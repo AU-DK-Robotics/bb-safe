@@ -1,0 +1,8 @@
+/venv
+/.vscode
+/.idea
+__pycache__
+pipeline_log.csv
+/handeye_calibration/**/*.yaml
+/handeye_calibration/**/*.png
+/handeye_calibration/**/*.csv

@@ -1,0 +1,7 @@
+path: /home/au-robotics/PycharmProjects/object_detection_xy/object_detection/dataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 2
+names: ['big_interface', 'small_interface']
