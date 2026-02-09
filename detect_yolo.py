@@ -3,7 +3,7 @@ import yaml
 import cv2
 import numpy as np
 import threading
-from ultralytics import YOLO
+from ultralytics import YOLO  # pyright: ignore[reportPrivateImportUsage]
 from datetime import datetime
 from pathlib import Path
 
@@ -15,12 +15,12 @@ class detectorYOLO:
         """Initialize YOLO model and optimized RealSense camera"""
 
         self.confidence_threshold = confidence_threshold
-        
+
         # Load YOLOv8 model
         self.model = YOLO(model_weights_path)
 
         self.infer_time = None
-  
+
     def detect_objects(self, image, depth_frame, img_save_path="", log_path=""):
         """Detect objects and return bounding boxes with real-world coordinates"""
         detections = self.model(image)[0]

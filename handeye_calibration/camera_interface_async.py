@@ -12,7 +12,7 @@ class RealSenseInterfaceAsync:
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
-        
+
         self.config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, fps)
         self.config.enable_stream(rs.stream.depth, width, height, rs.format.z16, fps)
 
@@ -82,7 +82,7 @@ class RealSenseInterfaceAsync:
 
     def update_frames(self):
         """Continuously update frames in a separate thread for real-time processing"""
-        
+
         while self.running:
             frames = self.pipeline.wait_for_frames()
             aligned_frames = self.align.process(frames)
@@ -140,4 +140,3 @@ class RealSenseInterfaceAsync:
             print("Stopping camera")
             self.writer.release()
             self.pipeline.stop()
-
