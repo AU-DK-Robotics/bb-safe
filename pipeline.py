@@ -343,12 +343,12 @@ def getRandomPoseXY(pose, spread):
     return randPose, xy
 
 def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_interface", attempts=3,
-                    detection_save_path = "", depth_save_path = "", img_save_path="", log_path=""):
+                    detection_save_path = Path(""), depth_save_path = Path(""), img_save_path=Path(""), log_path=Path("")):
 
     print("Detecting interface")
 
     if not img_save_path:
-        img_i_save_path = ""
+        img_i_save_path = Path("")
     for i in range(attempts):
         print(f"Attempt {i}")
         color_image, depth_image, depth_colormap = camera.get_frames()
@@ -474,7 +474,7 @@ def stringify_distance(d) -> str:
     except Exception:
         return str(d)
 
-def evaluateScene(model, camera, eval_mode, img_save_path="", log_path=""):
+def evaluateScene(model, camera, eval_mode, img_save_path=Path(""), log_path=Path("")):
     succ_actions = " planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
     fail_actions = " planned actions: chase interface; evaluate scene."
 
@@ -492,7 +492,7 @@ def evaluateScene(model, camera, eval_mode, img_save_path="", log_path=""):
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path="", log_path=""):
+def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(""), log_path=Path("")):
     t, dist, arms = getGripperSensors(ard, rtde_r)
     dist_str = stringify_distance(dist)
 
@@ -517,7 +517,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path="", l
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path="", log_path=""):
+def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path=Path(""), log_path=Path("")):
     force = rtde_r.getActualTCPForce()
     t, dist, arms = getGripperSensors(ard, rtde_r)
     force_str = stringify_wrench(force)
@@ -546,7 +546,7 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path="", l
                 f.write(msg+"\n")
     return response, uuid()
 
-def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path="", log_path=""):
+def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(""), log_path=Path("")):
     t, dist, arms = getGripperSensors(ard, rtde_r)
     arms_str = stringify_force_gauge(arms)
     dist_str = stringify_distance(dist)
@@ -575,7 +575,7 @@ def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path="", 
     return response, uuid()
 
 
-def evaluate(model, camera, prefix, img_save_path = "", log_path = ""):
+def evaluate(model, camera, prefix, img_save_path = Path(""), log_path = Path("")):
     img_rgb, _, _ = camera.get_frames()
     model.setMode("vqa")
     response, _ = model.infer(img_rgb, prefix, img_save_path = img_save_path, log_path = log_path)
