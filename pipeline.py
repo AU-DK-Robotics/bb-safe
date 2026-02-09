@@ -55,9 +55,10 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
     if not pose_start.size:
         pose_start = np.array(rtde_r.getActualTCPPose())
 
+    t_safe = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    csv_file = Path("admittance_log_"+t_safe+".csv")
     if out_dir:
-        t_safe = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        csv_file = out_dir / ("admittance_log_"+t_safe+".csv")
+        csv_file = out_dir / csv_file
         adm_settings = out_dir / ("admittance_settings_"+t_safe+".txt")
 
         with adm_settings.open("w") as f:
@@ -67,6 +68,8 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
         if f:
             csv_writer = csv.DictWriter(f,csv_fields,delimiter=";")
             csv_writer.writeheader()
+        else:
+            csv_writer = None
 
         controller = ComputeAdmittance(M, C, K, dt)
         state = np.zeros(12)
@@ -92,6 +95,8 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
 
         # ignore rotations
         pose_end[3:6] = pose_start[3:6]
+        curr_pose = np.array(rtde_r.getActualTCPPose())
+        z_error = curr_pose[2] - pose_end[2]
 
         targ_error = np.zeros(6)
 
@@ -162,7 +167,7 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             val.extend(np.diag(C_upd).tolist())
             data = dict(zip(csv_fields,val))
 
-            if f:
+            if csv_writer:
                 csv_writer.writerow(data)
 
             rtde_c.servoL(target_pose.tolist(), 0.1, 0.5, dt, 0.03, 300)
@@ -284,6 +289,9 @@ def connectGripper(serial_device, sertimeout):
         serdev = [i.device for i in comports()]
         if platform.system() == "Linux":
             serdev = [i for i in serdev if i.startswith("/dev/ttyACM")]
+    else:
+        serdev = None
+
     if serdev:
         serial_device = serdev[0]
     else:
@@ -294,6 +302,7 @@ def connectGripper(serial_device, sertimeout):
     ser = serial.Serial(serial_device,timeout=sertimeout,baudrate=115200,write_timeout=sertimeout)
 
     # Make sure the Arduino is responding consistently
+    res = None
     for _ in range(5):
         res = gripperSerialCmd(ser,"0",verbose=False)
     if not res:
@@ -348,16 +357,18 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
 
     print("Detecting interface")
 
-    if not img_save_path:
-        img_i_save_path = Path("")
     for i in range(attempts):
         print(f"Attempt {i}")
         color_image, depth_image, depth_colormap = camera.get_frames()
 
         if detection_save_path:
             det_i_save_path = detection_save_path.with_stem(detection_save_path.stem + f"_{i}")
+        else:
+            det_i_save_path = Path("")
         if img_save_path:
             img_i_save_path = img_save_path.with_stem(img_save_path.stem + f"_{i}")
+        else:
+            img_i_save_path = Path("")
         if depth_save_path:
             np.save(depth_save_path.with_stem(depth_save_path.stem + f"_{i}").with_suffix(".npy"),depth_image,allow_pickle=False)
 
@@ -379,7 +390,10 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
         # display_image = depth_colormap
         if detection_save_path:
             save_image = color_image.copy()
+        else:
+            save_image = None
 
+        align_pose = None
         for obj in detections:
 
             x, y, w, h = (round(i) for i in obj["bbox"])
@@ -398,11 +412,12 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
                             (x, y + h + 16), cv2.FONT_HERSHEY_SIMPLEX, 0.5, [0,255,0], 2)
 
 
-            if detection_save_path:
+            if save_image:
                 cv2.rectangle(save_image, (x, y), (x + w, y + h), [0,255,0], 2)
                 cv2.putText(save_image, f"Class: {obj["class_id"]} | ({obj_x:.3f}, {obj_y:.3f}, {obj_z:.3f})",
                             (x, y + h + 16), cv2.FONT_HERSHEY_SIMPLEX, 0.5, [0,255,0], 2)
 
+            # TODO: is this correct? The last matching detection is chosen?
             if match and obj["label"] == interface_type:
                 if display_image.size:
                     cv2.circle(display_image,obj["depth_spot"], 3, [0,255,0],-1) # negative thickness = filled
@@ -411,14 +426,14 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
         if display_image.size:
             Image.fromarray(display_image[:, :, ::-1]).show()
 
-        if detection_save_path:
+        if save_image:
             cv2.imwrite(det_i_save_path, save_image)
 
 
         # cv2.imshow("RealSense VLA Detection", display_image)
         # cv2.waitKey(1)
 
-        if match:
+        if align_pose:
             if spread:
                 align_pose, xy_offset = getRandomPoseXY(align_pose, spread)
             else:
@@ -480,6 +495,7 @@ def evaluateScene(model, camera, eval_mode, img_save_path=Path(""), log_path=Pat
     fail_actions = " planned actions: chase interface; evaluate scene."
 
     succ = True
+    msg = ""
     if eval_mode[0] == 0:
         msg = "No evaluation."
     elif eval_mode[0] == 1:
@@ -501,8 +517,9 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(
     fail_actions = " planned actions: chase interface; detect interface; align gripper with interface; evaluate alignment."
 
     response, uid = ["", ""]
+    msg = ""
+    succ = True
     if eval_mode[1] == 0:
-        succ = True
         msg = "No evaluation."
     elif eval_mode[1] == 1:
         succ = dist <= (22-3)
@@ -528,8 +545,9 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path=Path(
     fail_actions = " planned actions: remove gripper; insert gripper; evaluate insertion."
 
     response, uid = ["", ""]
+    succ = True
+    msg = ""
     if eval_mode[2] == 0:
-        succ = True
         msg = "No evaluation."
     elif eval_mode[2] == 1:
         eval1 = (dist > 3) and (dist < 5)
@@ -556,8 +574,9 @@ def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path=Path
     fail_actions = " planned actions: disengage gripper; engage gripper; evaluate engagement."
 
     response, uid = ["", ""]
+    succ = True
+    msg = ""
     if eval_mode[3] == 0:
-        succ = True
         msg = "No evaluation."
     if eval_mode[3] == 1:
         eval1 = np.any(np.array(arms) >= 4.0)
@@ -642,7 +661,7 @@ def main(ldict,action_adapter):
                     continue
             raise Exception("Failed to parse response")
 
-        if actionplan:
+        if actionplan:  # pyright: ignore[reportPossiblyUnboundVariable]
             a = actionplan.popleft() # A string
             msg = f"Timestamp: {t}\nAction: {a}\n"
             print(msg,end="")
