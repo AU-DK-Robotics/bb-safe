@@ -160,7 +160,7 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             val.extend(filtered_force)
             val.extend(np.diag(K_upd).tolist())
             val.extend(np.diag(C_upd).tolist())
-            data = dict(zip(csv_fields2,val))
+            data = dict(zip(csv_fields,val))
 
             if f:
                 csv_writer.writerow(data)
