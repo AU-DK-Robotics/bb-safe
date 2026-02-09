@@ -319,7 +319,7 @@ def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = Non
 
     return ser, rtde_c, rtde_r, camera
 
-def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=""):
+def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=Path("")):
     while True:
         randPose, xy = getRandomPoseXY(viewP, spread)
         print(xy)
