@@ -7,10 +7,9 @@ import numpy as np
 import math
 import platform
 from collections import deque
-from enum import StrEnum,Enum
-from typing import Dict, List, Optional
+from enum import StrEnum
+from typing import List
 from PIL import Image
-import sys
 from datetime import datetime
 import csv
 from pathlib import Path
@@ -22,7 +21,6 @@ from rtde_control import RTDEControlInterface
 from rtde_receive import RTDEReceiveInterface
 
 # Gripper
-import serial
 from serial import Serial
 from serial.tools.list_ports import comports
 
@@ -82,15 +80,12 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             rtde_c.zeroFtSensor()
 
         force = np.zeros(6)
-        force_mag = np.zeros(3)
         desired_force = np.zeros(6)
         desired_force[2] = desired_z_force
-        tau_ext_mag = 0.0
         force_z_err = 0.0
         filtered_force = np.zeros(6)
 
         t0 = time.perf_counter_ns()
-        t_prev = t0
         itercount = 0
 
         # ignore rotations
@@ -98,14 +93,11 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
         curr_pose = np.array(rtde_r.getActualTCPPose())
         z_error = curr_pose[2] - pose_end[2]
 
-        targ_error = np.zeros(6)
-
         while not (ratio > 0.9 and np.abs(z_error) < 0.0015 and np.abs(force_z_err) < 1.0):
 
             # Timing
             t_start = rtde_c.initPeriod()
             t_now = time.perf_counter_ns()
-            delta_t = (t_now - t_prev)/1e9
 
             # Position reading
             curr_pose = np.array(rtde_r.getActualTCPPose())
@@ -119,7 +111,6 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
                 filtered_force = force
             force_z_err = filtered_force[2] - desired_z_force
 
-            t_prev = t_now
             t = (t_now - t0)/1e9
             if t < T:
                 ratio = t / T
@@ -133,18 +124,18 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
 
             # Variable admittance
             curr_pose = np.array(rtde_r.getActualTCPPose())
-            pos_error = np.linalg.norm(curr_pose[:3] - pose_end[:3])
-            pos_error_ref = np.linalg.norm(reference_pose[:3] - pose_end[:3])
 
 
             if vac_distance_threshold:
                 if z_error < vac_distance_threshold:
                     if np.any(K_fac - 1):
                         K_scale = 1 + (K_fac - 1) * (1 - z_error / vac_distance_threshold)
-                        for i in range(6): K_upd[i, i] = K[i, i] * K_scale[i]
+                        for i in range(6):
+                            K_upd[i, i] = K[i, i] * K_scale[i]
                     if np.any(C_fac - 1):
                         C_scale = 1 + (C_fac - 1) * (1 - z_error / vac_distance_threshold)
-                        for i in range(6): C_upd[i, i] = C[i, i] * C_scale[i]
+                        for i in range(6):
+                            C_upd[i, i] = C[i, i] * C_scale[i]
                     controller.update_matrices(M, C_upd, K_upd)
 
 
@@ -152,7 +143,6 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
 
             state = controller(tau_ext, state)
             offset = state[:6]       # position offset computed by the controller
-            offset_dist = np.linalg.norm(offset[0:3])
             velocity = state[6:12]   # computed velocity (the second half)
             target_pose = reference_pose + offset
 
@@ -214,7 +204,7 @@ def urMoveJ(rtde_c,data,speed=0.25,post_move_wait=1,isIK=False):
         rtde_c.moveJ(data,speed=speed,asynchronous=True)
     while rtde_c.getAsyncOperationProgress()>=0:
         continue
-    time.sleep(post_move_wait)
+    sleep(post_move_wait)
     return data
 
 def gripperSerialCmd(ard,msg,enc="ASCII",verbose=False):
@@ -254,8 +244,8 @@ def getGripperSensors(ard,rtde_r):
             T_interface_ultra = np.matmul(T_interface_base,T_base_ultra)
 
             # interface dimensions
-            l = 0.197   # x
-            s = 0.13702 # y
+            width_x = 0.197
+            width_y = 0.13702
             c = 0.036   # corner chamfer
 
             # ultrasound coords relative to interface
@@ -265,19 +255,19 @@ def getGripperSensors(ard,rtde_r):
 
             # print(T_base_ultra)
 
-            bounds = [ np.abs(y) > s/2,
-                    np.abs(x) > l/2,
-                    y > -x + l/2 - c + s/2,
-                    y >  x + l/2 - c + s/2,
-                    y < -x - l/2 + c - s/2,
-                    y <  x - l/2 + c - s/2 ]
+            bounds = [ np.abs(y) > width_y/2,
+                    np.abs(x) > width_x/2,
+                    y > -x + width_x/2 - c + width_y/2,
+                    y >  x + width_x/2 - c + width_y/2,
+                    y < -x - width_x/2 + c - width_y/2,
+                    y <  x - width_x/2 + c - width_y/2 ]
 
             # Assume vertical gripper orientation
             if np.any(bounds):
                 print(f"Restricting distance measurement due to out of bounds: {[int(i) for i in bounds]}")
                 dist = round(z*100)
 
-        arms = (float(sens[1]), float(sens[2])) # R, L
+        arms = (float(sens[1]), float(sens[2])) # R, width_x
         return t, dist, arms
     else:
         # return None, None, None
@@ -299,7 +289,7 @@ def connectGripper(serial_device, sertimeout):
 
     print("Connecting to gripper (serial device " + serial_device + ")... ",end="")
 
-    ser = serial.Serial(serial_device,timeout=sertimeout,baudrate=115200,write_timeout=sertimeout)
+    ser = Serial(serial_device,timeout=sertimeout,baudrate=115200,write_timeout=sertimeout)
 
     # Make sure the Arduino is responding consistently
     res = None
@@ -333,7 +323,8 @@ def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=Path("")):
     while True:
         randPose, xy = getRandomPoseXY(viewP, spread)
         print(xy)
-        if rtde_c.getInverseKinematicsHasSolution(randPose): break
+        if rtde_c.getInverseKinematicsHasSolution(randPose):
+            break
     randQ = rtde_c.getInverseKinematics(randPose, qnear=viewQ)
 
     msg = f"View pose: {randPose.tolist()} (X-Y offset: {xy.tolist()})"
@@ -454,8 +445,8 @@ def engageGripper(ard,cmd,movetime,post_move_wait=1):
         gripperSerialCmd(ard,"2")
     else:
         gripperSerialCmd(ard,"1")
-    time.sleep(movetime)
-    time.sleep(post_move_wait)
+    sleep(movetime)
+    sleep(post_move_wait)
 
 class EvalPrefix(StrEnum):
     SCENE  = "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter."
@@ -492,7 +483,6 @@ def stringify_distance(d) -> str:
 
 def evaluateScene(model, camera, eval_mode, img_save_path=Path(""), log_path=Path("")):
     succ_actions = " planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
-    fail_actions = " planned actions: chase interface; evaluate scene."
 
     succ = True
     msg = ""
@@ -516,7 +506,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(
     succ_actions = " planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
     fail_actions = " planned actions: chase interface; detect interface; align gripper with interface; evaluate alignment."
 
-    response, uid = ["", ""]
+    response = ""
     msg = ""
     succ = True
     if eval_mode[1] == 0:
@@ -544,7 +534,7 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path=Path(
     succ_actions = " planned actions: engage gripper; evaluate engagement."
     fail_actions = " planned actions: remove gripper; insert gripper; evaluate insertion."
 
-    response, uid = ["", ""]
+    response = ""
     succ = True
     msg = ""
     if eval_mode[2] == 0:
@@ -573,7 +563,7 @@ def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path=Path
     succ_actions = " planned actions: finished."
     fail_actions = " planned actions: disengage gripper; engage gripper; evaluate engagement."
 
-    response, uid = ["", ""]
+    response = ""
     succ = True
     msg = ""
     if eval_mode[3] == 0:
@@ -604,7 +594,7 @@ def evaluate(model, camera, prefix, img_save_path = Path(""), log_path = Path(""
 def finalEvaluation(rtde_r, ard, eval_mode, now, spread, csv_path = Path("")):
     force = rtde_r.getActualTCPForce()
     t, dist, arms = getGripperSensors(ard, rtde_r)
-    force_str = stringify_wrench(force)
+    # force_str = stringify_wrench(force)
     dist_str = stringify_distance(dist)
     arms_str = stringify_force_gauge(arms)
 
@@ -654,7 +644,7 @@ def main(ldict,action_adapter):
             prev_response_id = ldict["response_id"]
             status_actionplan = ldict["response"].strip()[:-1].split(" planned actions: ")
             if status_actionplan != ldict["response"]: # successful split
-                status = status_actionplan[0]
+                # status = status_actionplan[0]
                 actionplan = status_actionplan[1].split("; ")
                 if actionplan != status_actionplan[1]:
                     actionplan = deque(actionplan)
