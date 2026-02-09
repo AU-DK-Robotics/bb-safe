@@ -275,7 +275,8 @@ def getGripperSensors(ard,rtde_r):
         arms = (float(sens[1]), float(sens[2])) # R, L
         return t, dist, arms
     else:
-        return None, None, None
+        # return None, None, None
+        raise(Exception("Communication with gripper sensors failed"))
 
 def connectGripper(serial_device, sertimeout):
     # If no device given, pick one automatically
