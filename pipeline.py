@@ -35,7 +35,7 @@ from object_detection.coordinate_transformation import transform_to_robot_frame
 import cv2
 
 def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
-                            desired_z_force = 0.0, out_dir = None
+                            desired_z_force = 0.0, out_dir = None,
                             vac_distance_threshold=0, K_fac=np.ones(6), C_fac=np.ones(6),
                             force_lowpass_alpha=0.2, pose_start = np.array([]),
                             pos_err_threshold=0.001, zero_ft = True):
@@ -94,7 +94,7 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
         pose_end[3:6] = pose_start[3:6]
 
         targ_error = np.zeros(6)
-        
+
         while not (ratio > 0.9 and np.abs(z_error) < 0.0015 and np.abs(force_z_err) < 1.0):
 
             # Timing
@@ -121,17 +121,17 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             else:
                 ratio = 1.0
             itercount += 1
-            
+
             tau_ext = filtered_force - desired_force
-            
+
             reference_pose = pose_start + ratio * (pose_end - pose_start)
 
             # Variable admittance
             curr_pose = np.array(rtde_r.getActualTCPPose())
             pos_error = np.linalg.norm(curr_pose[:3] - pose_end[:3])
             pos_error_ref = np.linalg.norm(reference_pose[:3] - pose_end[:3])
-           
-           
+
+
             if vac_distance_threshold:
                 if z_error < vac_distance_threshold:
                     if np.any(K_fac - 1):
@@ -201,7 +201,7 @@ def lowPassFilter(new_value, prev_filtered, alpha):
       np.ndarray: The updated filtered value.
     """
     return alpha * new_value + (1 - alpha) * prev_filtered
-    
+
 def urMoveJ(rtde_c,data,speed=0.25,post_move_wait=1,isIK=False):
     if isIK:
         rtde_c.moveJ_IK(data,speed=speed,asynchronous=True)
@@ -247,7 +247,7 @@ def getGripperSensors(ard,rtde_r):
             T_tcp_ultra[2,3] = 0.030 # z
             T_base_ultra = np.matmul(T_base_tcp,T_tcp_ultra)
             T_interface_ultra = np.matmul(T_interface_base,T_base_ultra)
-            
+
             # interface dimensions
             l = 0.197   # x
             s = 0.13702 # y
@@ -287,9 +287,9 @@ def connectGripper(serial_device, sertimeout):
         serial_device = serdev[0]
     else:
         raise Exception("Could not find any Arduino serial devices")
-    
+
     print("Connecting to gripper (serial device " + serial_device + ")... ",end="")
-    
+
     ser = serial.Serial(serial_device,timeout=sertimeout,baudrate=115200,write_timeout=sertimeout)
 
     # Make sure the Arduino is responding consistently
@@ -298,11 +298,11 @@ def connectGripper(serial_device, sertimeout):
     if not res:
         raise(Exception("Arduino not responding"))
     print("OK")
-    
+
     return ser
 
 def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1):
-    
+
     # Connect to gripper (Arduino)
     ser = connectGripper(serial_device, sertimeout)
 
@@ -344,7 +344,7 @@ def getRandomPoseXY(pose, spread):
 
 def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_interface", attempts=3,
                     detection_save_path = "", depth_save_path = "", img_save_path="", log_path=""):
-    
+
     print("Detecting interface")
 
     if not img_save_path:
@@ -401,7 +401,7 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
                 cv2.rectangle(save_image, (x, y), (x + w, y + h), [0,255,0], 2)
                 cv2.putText(save_image, f"Class: {obj["class_id"]} | ({obj_x:.3f}, {obj_y:.3f}, {obj_z:.3f})",
                             (x, y + h + 16), cv2.FONT_HERSHEY_SIMPLEX, 0.5, [0,255,0], 2)
-            
+
             if match and obj["label"] == interface_type:
                 if display_image.size:
                     cv2.circle(display_image,obj["depth_spot"], 3, [0,255,0],-1) # negative thickness = filled
@@ -409,7 +409,7 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
 
         if display_image.size:
             Image.fromarray(display_image[:, :, ::-1]).show()
-        
+
         if detection_save_path:
             cv2.imwrite(det_i_save_path, save_image)
 
@@ -477,7 +477,7 @@ def stringify_distance(d) -> str:
 def evaluateScene(model, camera, eval_mode, img_save_path="", log_path=""):
     succ_actions = " planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
     fail_actions = " planned actions: chase interface; evaluate scene."
-    
+
     succ = True
     if eval_mode[0] == 0:
         msg = "No evaluation."
@@ -485,7 +485,7 @@ def evaluateScene(model, camera, eval_mode, img_save_path="", log_path=""):
         msg = f"Heuristic evaluation: no heuristics, success: {succ}."
     response = msg + succ_actions
     msg = response
-    
+
     print(msg)
     if log_path:
         with log_path.open("a") as f:
@@ -498,7 +498,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path="", l
 
     succ_actions = " planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
     fail_actions = " planned actions: chase interface; detect interface; align gripper with interface; evaluate alignment."
-    
+
     response, uid = ["", ""]
     if eval_mode[1] == 0:
         succ = True
@@ -649,7 +649,7 @@ def main(ldict,action_adapter):
                 log.write(msg)
             exec(action_adapter[a],globals(),ldict)
             continue
-                
+
         print("No more actions")
         break
 
@@ -707,7 +707,7 @@ engageGripper(ser, False, servo_time)
     # Type of evaluation to do after each action (detection, alignment, insertion, engagement)
     # 0 = none, 1 = rule-based
     ldict["eval_mode"] = [1, 1, 1, 1]
-    
+
     # Admittance parameters
     ldict["admit_M"] = np.diag([50, 50, 50, 50, 50, 50])
     ldict["insert_C"] = np.diag([250, 250, 1000, 1000, 1000, 1000])
@@ -716,7 +716,7 @@ engageGripper(ser, False, servo_time)
     ldict["insert_K_fac"] = np.array([1, 1, 5, 1, 1, 1])
     ldict["remove_C"] = np.diag([2000, 2000, 1000, 10000, 10000, 10000])
     ldict["remove_K"] = np.diag([500, 500, 500, 1000, 1000, 1000])
-    
+
     # Desired gripper insertion force (TCP z-axis)
     ldict["insert_Fz"] = 8.0
 
@@ -752,4 +752,3 @@ engageGripper(ser, False, servo_time)
         print("Received keyboard interrupt, stopping")
     finally:
         camera.stop()
-
