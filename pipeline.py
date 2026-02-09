@@ -751,4 +751,4 @@ engageGripper(ser, False, servo_time)
     except KeyboardInterrupt:
         print("Received keyboard interrupt, stopping")
     finally:
-        camera.stop()
+        ldict["camera"].stop()
