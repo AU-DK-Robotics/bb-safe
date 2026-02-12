@@ -273,6 +273,40 @@ def getGripperSensors(ard,rtde_r):
         # return None, None, None
         raise(Exception("Communication with gripper sensors failed"))
 
+def getSensorsMultisample(ard,rtde_r,N,dt):
+
+    # Initialize arrays to store sensor readings
+    dist = np.zeros((N))
+    arms = np.zeros((2,N))
+    force = np.zeros((6,N))
+
+    # Start keeping track of time
+    t_start = time.perf_counter()
+
+    # i from 0 to N-1
+    for i in range(0,N):
+
+        # Read the gripper sensors (ultrasonic range and arm forces)
+        _ , dist[i], arms[:,i] = getGripperSensors(ard,rtde_r)
+
+        # Read the UR's 6-axis F-T sensor
+        force[:,i] = rtde_r.getActualTCPForce()
+
+        # Try to take measurements according to the schedule defined
+        # by N and dt
+        while (time.perf_counter() - t_start) < (dt*(i+1)):
+            pass
+
+    # Calculate and return sample statistics
+    dist_mean  = np.mean(dist)
+    arms_mean  = np.mean(arms,  axis=1, keepdims=True)
+    force_mean = np.mean(force, axis=1, keepdims=True)
+    dist_std   = np.std(dist,  mean=dist_mean,  ddof=1)
+    arms_std   = np.std(arms,  mean=arms_mean,  ddof=1, axis=1)
+    force_std  = np.std(force, mean=force_mean, ddof=1, axis=1)
+
+    return dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std
+
 def connectGripper(serial_device, sertimeout):
     # If no device given, pick one automatically
     if not serial_device:
@@ -674,14 +708,14 @@ if __name__ == '__main__':
         "chase interface":              "rand_view_q = urMoveJ(rtde_c, getRandomViewQ(rtde_c, viewP, viewQ, spread = rand_spread_scene))",
         "detect interface":             "align_pose, insert_pose = detectInterface(camera, model, rtde_r, spread = rand_spread_align, detection_save_path = detect_save_path, depth_save_path = z_save_path, img_save_path=rgb_save_path, log_path=log)",
         "align gripper with interface": "urMoveJ(rtde_c, align_pose, isIK=True)",
-        "evaluate alignment":           "response, response_id = evaluateAlignment(model, camera, ser, rtde_r, eval_mode, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate alignment":           "response, response_id = evaluateAlignment(model, camera, ser, rtde_r, eval_mode, img_save_path=rgb_save_path, log_path=log, N=n_samp, dt=dt_samp)",
         "insert gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, insert_pose, 20.0, dt, admit_M, insert_C, insert_K, K_fac = insert_K_fac, C_fac = insert_C_fac, desired_z_force = insert_Fz, vac_distance_threshold = 0.01",
-        "evaluate insertion":           "response, response_id = evaluateInsertion(model, camera, rtde_r, ser, eval_mode, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate insertion":           "response, response_id = evaluateInsertion(model, camera, rtde_r, ser, eval_mode, img_save_path=rgb_save_path, log_path=log, N=n_samp, dt=dt_samp)",
         "remove gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False, out_dir=out_dir))",
         "engage gripper":               "engageGripper(ser, True, servo_time)",
-        "evaluate engagement":          "response, response_id = evaluateEngagement(model, camera, ser, rtde_r, eval_mode, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate engagement":          "response, response_id = evaluateEngagement(model, camera, ser, rtde_r, eval_mode, img_save_path=rgb_save_path, log_path=log, N=n_samp, dt=dt_samp)",
         "disengage gripper":            "engageGripper(ser, False, servo_time)",
-        "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), csv_path = global_csv)
+        "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), csv_path = global_csv, N=n_samp, dt=dt_samp)
 engageGripper(ser, False, servo_time)
 "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False , out_dir=out_dir))"""
     }
@@ -734,6 +768,10 @@ engageGripper(ser, False, servo_time)
     # Expectation value of a Poisson distribution in terms of bits (DN)
     # i.e. mean brightness of the noise when applied to a black image (out of 255)
     snow_strength = 127
+
+    # Number of samples and time between samples when reading F-T, range, and arm sensors
+    n_samp = 50
+    dt_samp = 0.04
 
     # Root folder for storing experiment data
     global_dir = Path.home() / "bb_safe" / "Experiments"

@@ -6,7 +6,7 @@ def apply(img,lam=127):
     rand_gen = np.random.default_rng()
 
     # Use floats for calculation
-    img = img.astype(np.float16)
+    img = img.astype(np.float64)
 
     # Draw samples from the Poisson distribution with
     # lam expected number of events per image pixel

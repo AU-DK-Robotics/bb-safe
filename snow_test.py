@@ -26,8 +26,8 @@ test_snow_light_arr = test_snow_arr[:,961:1920,:]
 # Analyze statistical properties of the output image
 mean_dark  = np.mean(test_snow_dark_arr)
 mean_light = np.mean(test_snow_light_arr)
-std_dark  = np.std(test_snow_dark_arr,mean=mean_dark)
-std_light = np.std(test_snow_light_arr,mean=mean_light)
+std_dark  = np.std(test_snow_dark_arr,mean=mean_dark,ddof=1)
+std_light = np.std(test_snow_light_arr,mean=mean_light,ddof=1)
 
 print(f"Dark pixels: {mean_dark} +/- {std_dark}")
 print(f"Light pixels: {mean_light} +/- {std_light} ")
