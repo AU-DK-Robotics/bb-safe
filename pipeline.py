@@ -25,7 +25,7 @@ from serial import Serial
 from serial.tools.list_ports import comports
 
 # Camera
-from handeye_calibration.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
+from camera_utils.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
 
 # Object dection
 from detect_yolo import detectorYOLO

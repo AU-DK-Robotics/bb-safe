@@ -5,14 +5,15 @@ import numpy as np
 import cv2
 import threading
 import yaml
-import json
+from pathlib import Path
+import snow
 
 class RealSenseInterfaceAsync:
-    def __init__(self, calibration_path, json_file, width=1280, height=720, fps=30):
+    def __init__(self, calibration_path, out_dir, width=1280, height=720, fps=30, snow_strength=0):
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
-        
+
         self.config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, fps)
         self.config.enable_stream(rs.stream.depth, width, height, rs.format.z16, fps)
 
@@ -30,26 +31,28 @@ class RealSenseInterfaceAsync:
         self.sensors = self.device.query_sensors()
         self.depth_scale = self.device.first_depth_sensor().get_depth_scale()
 
-        jsonObj = json.load(open(json_file))
-        json_string= str(jsonObj).replace("'", '\"')
-        advnc_mode = rs.rs400_advanced_mode(self.device)
-        advnc_mode.load_json(json_string)
+        frame_size = (1280, 720)
+        fps = 30
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        filename = out_dir / "recording.mov"
+        print(f"Saving recording to {str(filename)}")
+        self.writer = cv2.VideoWriter(str(filename),fourcc,fps,frame_size)
 
-        # for sensor in self.sensors:
-        #     if sensor.is_depth_sensor():
-        #         print("Configuring depth sensor")
-        #         sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
-        #         # sensor.set_option(rs.option.visual_preset, 5)   # High-accuracy preset
-        #         sensor.set_option(rs.option.laser_power, 360)   # Max laser power
-        #         sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
+        for sensor in self.sensors:
+            if sensor.is_depth_sensor():
+                # print("Configuring depth sensor")
+                sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
+                # sensor.set_option(rs.option.visual_preset, 5)   # High-accuracy preset
+                sensor.set_option(rs.option.laser_power, 360)   # Max laser power
+                sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
-        #     else:  # RGB Sensor
-        #         continue
-        #         # sensor.set_option(rs.option.sharpness, 100)  # Increase sharpness
-        #         # sensor.set_option(rs.option.exposure, 100)  # Adjust exposure (manual mode)
-        #         # sensor.set_option(rs.option.gain, 16)  # Increase gain for better brightness
-        #         # sensor.set_option(rs.option.white_balance, 4500)  # Adjust white balance
-        #         # sensor.set_option(rs.option.enable_auto_exposure, 1)  # Enable auto exposure
+            else:  # RGB Sensor
+                continue
+                # sensor.set_option(rs.option.sharpness, 100)  # Increase sharpness
+                # sensor.set_option(rs.option.exposure, 100)  # Adjust exposure (manual mode)
+                # sensor.set_option(rs.option.gain, 16)  # Increase gain for better brightness
+                # sensor.set_option(rs.option.white_balance, 4500)  # Adjust white balance
+                # sensor.set_option(rs.option.enable_auto_exposure, 1)  # Enable auto exposure
 
 
         # Retrieve camera intrinsics from RealSense
@@ -78,8 +81,11 @@ class RealSenseInterfaceAsync:
             # print(f"{c.size} {z.size} {zm.size}")
             if c.size and z.size and zm.size: break
 
+        self.snow_strength = snow_strength
+
     def update_frames(self):
         """Continuously update frames in a separate thread for real-time processing"""
+
         while self.running:
             frames = self.pipeline.wait_for_frames()
             aligned_frames = self.align.process(frames)
@@ -90,8 +96,12 @@ class RealSenseInterfaceAsync:
             self.depth_image = np.asanyarray(depth_frame.get_data())
             self.depth_colormap = np.asanyarray(self.colorizer.colorize(depth_frame).get_data())
 
-            # cv2.imshow("Camera", self.depth_colormap)
-            # cv2.waitKey(1)
+            # self.writer.write(self.color_image)
+
+            cv2.imshow("Camera", self.color_image)
+            cv2.waitKey(1)
+
+
 
     def get_frames(self):
         """Retrieve the latest color and depth frames"""
@@ -130,5 +140,6 @@ class RealSenseInterfaceAsync:
         if self.running:
             self.running = False
             self.thread.join()
-        self.pipeline.stop()
-
+            print("Stopping camera")
+            self.writer.release()
+            self.pipeline.stop()
