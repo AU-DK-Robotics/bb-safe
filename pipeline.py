@@ -533,9 +533,10 @@ def evaluateScene(model, camera, eval_mode, img_save_path=Path(""), log_path=Pat
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(""), log_path=Path("")):
-    t, dist, arms = getGripperSensors(ard, rtde_r)
-    dist_str = stringify_distance(dist)
+def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=Path(""), log_path=Path("")):
+    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+
+    dist_str = stringify_distance(dist_mean)
 
     succ_actions = " planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
     fail_actions = " planned actions: chase interface; detect interface; align gripper with interface; evaluate alignment."
@@ -546,7 +547,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(
     if eval_mode[1] == 0:
         msg = "No evaluation."
     elif eval_mode[1] == 1:
-        succ = dist <= (22-3)
+        succ = dist_mean <= (22-3)
         msg = f"Heuristic evaluation: distance for aligment: {dist_str}, success: {succ}."
     if succ:
         response = msg + succ_actions
@@ -559,11 +560,10 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path=Path(""), log_path=Path("")):
-    force = rtde_r.getActualTCPForce()
-    t, dist, arms = getGripperSensors(ard, rtde_r)
-    force_str = stringify_wrench(force)
-    dist_str = stringify_distance(dist)
+def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_path=Path(""), log_path=Path("")):
+    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    force_str = stringify_wrench(force_mean)
+    dist_str = stringify_distance(dist_mean)
 
     succ_actions = " planned actions: engage gripper; evaluate engagement."
     fail_actions = " planned actions: remove gripper; insert gripper; evaluate insertion."
@@ -574,8 +574,8 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path=Path(
     if eval_mode[2] == 0:
         msg = "No evaluation."
     elif eval_mode[2] == 1:
-        eval1 = (dist > 3) and (dist < 5)
-        eval2 = force[2] >= 4.0
+        eval1 = (dist_mean > 3) and (dist_mean < 5)
+        eval2 = force_mean[2] >= 4.0
         succ = eval1 and eval2
         msg = f"Heuristic evaluation: distance for insertion: {dist_str}, F-T for insertion: {force_str}, success: {succ}."
     if succ:
@@ -589,10 +589,10 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, img_save_path=Path(
                 f.write(msg+"\n")
     return response, uuid()
 
-def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path=Path(""), log_path=Path("")):
-    t, dist, arms = getGripperSensors(ard, rtde_r)
-    arms_str = stringify_force_gauge(arms)
-    dist_str = stringify_distance(dist)
+def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=Path(""), log_path=Path("")):
+    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    arms_str = stringify_force_gauge(arms_mean)
+    dist_str = stringify_distance(dist_mean)
 
     succ_actions = " planned actions: finished."
     fail_actions = " planned actions: disengage gripper; engage gripper; evaluate engagement."
@@ -603,8 +603,8 @@ def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, img_save_path=Path
     if eval_mode[3] == 0:
         msg = "No evaluation."
     if eval_mode[3] == 1:
-        eval1 = np.any(np.array(arms) >= 4.0)
-        eval2 = (dist > 3) and (dist < 5)
+        eval1 = np.any(np.array(arms_mean) >= 4.0)
+        eval2 = (dist_mean > 3) and (dist_mean < 5)
         succ = eval1 and eval2
         msg = f"Heuristic evaluation: arm forces for engagement: {arms_str}, distance for engagement: {dist_str}, success: {succ}."
     if succ:
@@ -625,15 +625,14 @@ def evaluate(model, camera, prefix, img_save_path = Path(""), log_path = Path(""
     response, _ = model.infer(img_rgb, prefix, img_save_path = img_save_path, log_path = log_path)
     return response
 
-def finalEvaluation(rtde_r, ard, eval_mode, now, spread, csv_path = Path("")):
-    force = rtde_r.getActualTCPForce()
-    t, dist, arms = getGripperSensors(ard, rtde_r)
-    # force_str = stringify_wrench(force)
-    dist_str = stringify_distance(dist)
-    arms_str = stringify_force_gauge(arms)
+def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = Path("")):
+    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    # force_str = stringify_wrench(force_mean)
+    dist_str = stringify_distance(dist_mean)
+    arms_str = stringify_force_gauge(arms_mean)
 
-    eval1 = np.any(np.array(arms) >= 4.0)
-    eval2 = (dist > 3) and (dist < 5)
+    eval1 = np.any(np.array(arms_mean) >= 4.0)
+    eval2 = (dist_mean > 3) and (dist_mean < 5)
 
     succ = eval1 and eval2
     msg = f"Final heuristic evaluation: distance: {dist_str}, arm forces: {arms_str}.\nFinal success: {succ}."
@@ -642,9 +641,12 @@ def finalEvaluation(rtde_r, ard, eval_mode, now, spread, csv_path = Path("")):
         data = [now, "YOLO"]
         data.extend(eval_mode)
         data.append(spread)
-        data.append(dist)
-        data.extend(arms)
-        data.extend(force)
+        data.append(dist_mean)
+        data.append(dist_std)
+        data.extend(arms_mean)
+        data.extend(arms_std)
+        data.extend(force_mean)
+        data.extend(force_std)
         data.append(int(succ))
         with csv_path.open("a") as f:
             writer = csv.writer(f, delimiter = ";")
@@ -708,14 +710,14 @@ if __name__ == '__main__':
         "chase interface":              "rand_view_q = urMoveJ(rtde_c, getRandomViewQ(rtde_c, viewP, viewQ, spread = rand_spread_scene))",
         "detect interface":             "align_pose, insert_pose = detectInterface(camera, model, rtde_r, spread = rand_spread_align, detection_save_path = detect_save_path, depth_save_path = z_save_path, img_save_path=rgb_save_path, log_path=log)",
         "align gripper with interface": "urMoveJ(rtde_c, align_pose, isIK=True)",
-        "evaluate alignment":           "response, response_id = evaluateAlignment(model, camera, ser, rtde_r, eval_mode, img_save_path=rgb_save_path, log_path=log, N=n_samp, dt=dt_samp)",
+        "evaluate alignment":           "response, response_id = evaluateAlignment(model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
         "insert gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, insert_pose, 20.0, dt, admit_M, insert_C, insert_K, K_fac = insert_K_fac, C_fac = insert_C_fac, desired_z_force = insert_Fz, vac_distance_threshold = 0.01",
-        "evaluate insertion":           "response, response_id = evaluateInsertion(model, camera, rtde_r, ser, eval_mode, img_save_path=rgb_save_path, log_path=log, N=n_samp, dt=dt_samp)",
+        "evaluate insertion":           "response, response_id = evaluateInsertion(model, camera, rtde_r, ser, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
         "remove gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False, out_dir=out_dir))",
         "engage gripper":               "engageGripper(ser, True, servo_time)",
-        "evaluate engagement":          "response, response_id = evaluateEngagement(model, camera, ser, rtde_r, eval_mode, img_save_path=rgb_save_path, log_path=log, N=n_samp, dt=dt_samp)",
+        "evaluate engagement":          "response, response_id = evaluateEngagement(model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
         "disengage gripper":            "engageGripper(ser, False, servo_time)",
-        "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), csv_path = global_csv, N=n_samp, dt=dt_samp)
+        "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), n_samp, dt_samp, csv_path = global_csv)
 engageGripper(ser, False, servo_time)
 "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False , out_dir=out_dir))"""
     }
