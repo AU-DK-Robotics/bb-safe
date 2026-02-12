@@ -22,12 +22,12 @@ def apply(img,lam=127):
     # Add the random samples to the input image data
     snow_img = img + snow
 
+    # Clip to max allowed pixel value (uint8: 255)
+    snow_img = np.clip(snow_img,max=1.0,out=snow_img)
+    snow = np.clip(snow,max=1.0,out=snow)
+
     # Convert back to integers
     snow_img = (255*snow_img).astype(np.uint8)
     snow = (255*snow).astype(np.uint8)
-
-    # Clip to max allowed pixel value (uint8: 255)
-    snow_img = np.clip(snow_img,max=255,out=snow_img)
-    snow = np.clip(snow,max=255,out=snow)
 
     return snow_img, snow

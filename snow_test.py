@@ -10,7 +10,7 @@ test_arr = np.zeros((1080,1920,3),np.uint8)
 test_arr[:,961:1920,:] = 127
 
 # Apply snow effect to test pixel values
-test_snow_arr, snow_arr = snow.apply(test_arr)
+test_snow_arr, snow_arr = snow.apply(test_arr,lam=127)
 
 # Convert pixel values to image
 test_snow_img = Image.fromarray(test_snow_arr)
