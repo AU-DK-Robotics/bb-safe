@@ -1,0 +1,30 @@
+import numpy as np
+
+def apply_snow(rand_gen,img,lam=127.5):
+
+    # Use floats for calculation
+    img = img.astype(np.float16)
+
+    # Draw samples from the Poisson distribution with
+    # lam expected number of events per image pixel
+    snow = rand_gen.poisson(lam=lam,size=img.shape)
+
+    # Normalize snow and pixel values
+    snow = snow/255
+    img = img/255
+
+    # Reduce snow intensity in bright areas
+    snow = snow*(1-img)
+
+    # Add the random samples to the input image data
+    snow_img = img + snow
+
+    # Convert back to integers
+    snow_img = (255*snow_img).astype(np.uint8)
+    snow = (255*snow).astype(np.uint8)
+
+    # Clip to max allowed pixel value (uint8: 255)
+    snow_img = np.clip(snow_img,max=255,out=snow_img)
+    snow = np.clip(snow,max=255,out=snow)
+
+    return snow_img, snow
