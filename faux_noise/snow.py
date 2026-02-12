@@ -1,6 +1,9 @@
 import numpy as np
 
-def apply_snow(rand_gen,img,lam=127.5):
+def apply(img,lam=127):
+
+    # Make a random generator
+    rand_gen = np.random.default_rng()
 
     # Use floats for calculation
     img = img.astype(np.float16)
