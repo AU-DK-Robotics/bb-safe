@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-from faux_noise import snow
+from camera_utils import snow
 import matplotlib.pyplot as plt
 
 # Initialize test pixel values
