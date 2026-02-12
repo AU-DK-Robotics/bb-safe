@@ -96,6 +96,10 @@ class RealSenseInterfaceAsync:
             self.depth_image = np.asanyarray(depth_frame.get_data())
             self.depth_colormap = np.asanyarray(self.colorizer.colorize(depth_frame).get_data())
 
+            # Apply snow to RGB image
+            if self.snow_strength > 0:
+                self.color_image, _ = snow.apply(self.color_image,lam=self.snow_strength)
+
             # self.writer.write(self.color_image)
 
             cv2.imshow("Camera", self.color_image)
@@ -106,6 +110,8 @@ class RealSenseInterfaceAsync:
     def get_frames(self):
         """Retrieve the latest color and depth frames"""
         if self.color_image.size and self.depth_image.size and self.depth_colormap.size:
+
+            # Get images
             color_image = self.color_image
             depth_image = self.depth_image
             depth_colormap = self.depth_colormap
