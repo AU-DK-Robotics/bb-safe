@@ -185,7 +185,7 @@ def getPoseMatrix(rtde_r):
 
 def lowPassFilter(new_value, prev_filtered, alpha):
     """
-    Exponential arm_moving average (EMA) low-pass filter for vector data.
+    Exponential moving average (EMA) low-pass filter for vector data.
 
     Parameters:
       new_value (np.ndarray): The latest 6D measurement.
