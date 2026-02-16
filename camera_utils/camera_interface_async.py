@@ -153,6 +153,7 @@ class RealSenseInterfaceAsync:
             color_image_original = color_image.copy()
             if self.snow_factor > 0:
                 snow_mean,snow_std=self.snow_model()
+                print(f"Noise mean: {snow_mean}, noise std: {snow_std}")
                 color_image, _ = snow.apply(color_image,mean=snow_mean,std=snow_std)
 
             return color_image, depth_image, depth_colormap, color_image_original
