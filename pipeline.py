@@ -353,7 +353,7 @@ def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = Non
 
     return ser, rtde_c, rtde_r, camera
 
-def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=Path("")):
+def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=None):
     while True:
         randPose, xy = getRandomPoseXY(viewP, spread)
         print(xy)
@@ -378,7 +378,7 @@ def getRandomPoseXY(pose, spread):
     return randPose, xy
 
 def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_interface", attempts=3,
-                    detection_save_path = Path(""), depth_save_path = Path(""), img_save_path=Path(""), log_path=Path("")):
+                    detection_save_path = None, depth_save_path = None, img_save_path=None, log_path=None):
 
     print("Detecting interface")
 
@@ -389,11 +389,11 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
         if detection_save_path:
             det_i_save_path = detection_save_path.with_stem(detection_save_path.stem + f"_{i}")
         else:
-            det_i_save_path = Path("")
+            det_i_save_path = None
         if img_save_path:
             img_i_save_path = img_save_path.with_stem(img_save_path.stem + f"_{i}")
         else:
-            img_i_save_path = Path("")
+            img_i_save_path = None
         if depth_save_path:
             np.save(depth_save_path.with_stem(depth_save_path.stem + f"_{i}").with_suffix(".npy"),depth_image,allow_pickle=False)
 
@@ -451,7 +451,7 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
         if display_image.size:
             Image.fromarray(display_image[:, :, ::-1]).show()
 
-        if save_image:
+        if save_image and det_i_save_path:
             cv2.imwrite(det_i_save_path, save_image)
 
 
@@ -515,7 +515,7 @@ def stringify_distance(d) -> str:
     except Exception:
         return str(d)
 
-def evaluateScene(model, camera, eval_mode, img_save_path=Path(""), log_path=Path("")):
+def evaluateScene(model, camera, eval_mode, img_save_path=None, log_path=None):
     succ_actions = " planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
 
     succ = True
@@ -533,7 +533,7 @@ def evaluateScene(model, camera, eval_mode, img_save_path=Path(""), log_path=Pat
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=Path(""), log_path=Path("")):
+def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=None, log_path=None):
     dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
 
     dist_str = stringify_distance(dist_mean)
@@ -560,7 +560,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_pat
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_path=Path(""), log_path=Path("")):
+def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_path=None, log_path=None):
     dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
     force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
@@ -589,7 +589,7 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_pat
                 f.write(msg+"\n")
     return response, uuid()
 
-def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=Path(""), log_path=Path("")):
+def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=None, log_path=None):
     dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
     arms_str = stringify_force_gauge(arms_mean)
     dist_str = stringify_distance(dist_mean)
@@ -619,13 +619,13 @@ def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_pa
     return response, uuid()
 
 
-def evaluate(model, camera, prefix, img_save_path = Path(""), log_path = Path("")):
+def evaluate(model, camera, prefix, img_save_path = None, log_path = None):
     img_rgb, _, _ = camera.get_frames()
     model.setMode("vqa")
     response, _ = model.infer(img_rgb, prefix, img_save_path = img_save_path, log_path = log_path)
     return response
 
-def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = Path("")):
+def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = None):
     dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
     # force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
@@ -637,7 +637,7 @@ def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = Path(
     succ = eval1 and eval2
     msg = f"Final heuristic evaluation: distance: {dist_str}, arm forces: {arms_str}.\nFinal success: {succ}."
     print(msg)
-    if csv_path.name:
+    if csv_path:
         data = [now, "YOLO"]
         data.extend(eval_mode)
         data.append(spread)

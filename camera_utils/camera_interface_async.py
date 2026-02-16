@@ -9,7 +9,7 @@ from pathlib import Path
 import snow
 
 class RealSenseInterfaceAsync:
-    def __init__(self, out_dir, width=1280, height=720, fps=30, hec_path=Path(""), snow_strength=0):
+    def __init__(self, width=1280, height=720, fps=30, hec_path=Path(""), recording_path=Path(""), snow_strength=0):
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
@@ -31,12 +31,12 @@ class RealSenseInterfaceAsync:
         self.sensors = self.device.query_sensors()
         self.depth_scale = self.device.first_depth_sensor().get_depth_scale()
 
-        frame_size = (1280, 720)
-        fps = 30
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        filename = out_dir / "recording.mov"
-        print(f"Saving recording to {str(filename)}")
-        self.writer = cv2.VideoWriter(str(filename),fourcc,fps,frame_size)
+        if recording_path:
+            frame_size = (width, height)
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            filename = recording_path / "recording.mov"
+            print(f"Saving recording to {str(filename)}")
+            self.writer = cv2.VideoWriter(str(filename),fourcc,fps,frame_size)
 
         for sensor in self.sensors:
             if sensor.is_depth_sensor():
@@ -62,7 +62,7 @@ class RealSenseInterfaceAsync:
                                        [0, 0, 1]], dtype=np.float64)
         self.distortion_coeffs = np.array(intr.coeffs, dtype=np.float64)  # [k1, k2, p1, p2, k3] etc.
 
-        # Load configuration
+        # Load HEC configuration
         if hec_path:
             with open(hec_path, "r") as file:
                 calibration = yaml.safe_load(file)
