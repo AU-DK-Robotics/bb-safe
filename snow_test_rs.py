@@ -19,13 +19,11 @@ pi_rs_incomplete_conversion_factor = rs_pixel_area/(pi_pixel_area*pi_gain*pi_t_e
 print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplete_conversion_factor}")
 
 gamma_rate = 600/60 # Gy/min
-camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate,recording_path=out_path)
+camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate)
 
-t = time.perf_counter()
-while time.perf_counter()-t < 5:
-    pass
-    # cv2.imshow("Camera views with simulated gamma-ray noise", color_frame)
-    # cv2.waitKey(0)
+color_frame,_,_  = camera.get_frames()
+
+cv2.imwrite(out_path / "image.png", color_frame)
 
 print("Done")
 

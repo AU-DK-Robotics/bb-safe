@@ -47,7 +47,7 @@ class RealSenseInterfaceAsync:
 
         self.recording_path = recording_path
         if self.recording_path:
-            frame_size = (height, width)
+            frame_size = (width, height)
             fourcc = cv2.VideoWriter_fourcc(*'mp4v')
             filename = recording_path / "recording.mov"
             print(f"Saving recording to {str(filename)}")
