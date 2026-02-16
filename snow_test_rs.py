@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from camera_utils.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
 import cv2
 from pathlib import Path
+import time
 
 pi_t_exp = 1.3
 pi_gain = 1
@@ -17,13 +18,13 @@ print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplet
 gamma_rate = 600/60 # Gy/min
 camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate,recording_path=Path("snow_test_rs"))
 
-while True:
-
-    # Apply snow effect to test pixel values
-    color_frame, _, _ = camera.get_frames()
-
+t = time.perf_counter()
+while time.perf_counter()-t < 5:
+    pass
     # cv2.imshow("Camera views with simulated gamma-ray noise", color_frame)
     # cv2.waitKey(0)
+
+camera.
 
 # # Show the output image with default application
 # test_snow_img.show()

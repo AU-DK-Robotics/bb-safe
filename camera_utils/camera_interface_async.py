@@ -44,7 +44,8 @@ class RealSenseInterfaceAsync:
         # self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
         # self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
-        if recording_path:
+        self.recording_path = recording_path
+        if self.recording_path:
             frame_size = (width, height)
             fourcc = cv2.VideoWriter_fourcc(*'mp4v')
             filename = recording_path / "recording.mov"
@@ -99,7 +100,8 @@ class RealSenseInterfaceAsync:
                 snow_mean,snow_std=self.snow_model()
                 self.color_image, _ = snow.apply(self.color_image,mean=self.snow_mean,std=self.snow_std)
 
-            # self.writer.write(self.color_image)
+            if self.recording_path:
+                self.writer.write(self.color_image)
 
             cv2.imshow("Camera", self.color_image)
             cv2.waitKey(1)
