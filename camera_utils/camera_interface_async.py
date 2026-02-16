@@ -73,14 +73,16 @@ class RealSenseInterfaceAsync:
         self.thread = threading.Thread(target=self.update_frames, daemon=True)
         self.thread.start()
 
+        self.snow_factor = snow_factor
+        self.snow_rate = snow_rate
+
         # Make sure we're getting frames
         while True:
             c,z,zm = self.get_frames()
             # print(f"{c.size} {z.size} {zm.size}")
             if c.size and z.size and zm.size: break
 
-        self.snow_factor = snow_factor
-        self.snow_rate = snow_rate
+
 
     def update_frames(self):
         """Continuously update frames in a separate thread for real-time processing"""
