@@ -39,10 +39,10 @@ class RealSenseInterfaceAsync:
         self.color_sensor = self.device.first_color_sensor()
         self.depth_scale = self.depth_sensor.get_depth_scale()
 
-        self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
+        # self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
         # sensor.set_option(rs.option.visual_preset, 5)   # High-accuracy preset
-        self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
-        self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
+        # self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
+        # self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
         if recording_path:
             frame_size = (width, height)
