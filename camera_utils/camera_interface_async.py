@@ -28,8 +28,14 @@ class RealSenseInterfaceAsync:
 
         # 🔹 Apply camera settings for best quality
         self.device = self.profile.get_device()
-        self.sensors = self.device.query_sensors()
-        self.depth_scale = self.device.first_depth_sensor().get_depth_scale()
+        self.depth_sensor = self.device.first_depth_sensor()
+        self.color_sensor = self.device.first_color_sensor()
+        self.depth_scale = self.depth_sensor.get_depth_scale()
+
+        self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
+        # sensor.set_option(rs.option.visual_preset, 5)   # High-accuracy preset
+        self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
+        self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
         if recording_path:
             frame_size = (width, height)
@@ -37,23 +43,6 @@ class RealSenseInterfaceAsync:
             filename = recording_path / "recording.mov"
             print(f"Saving recording to {str(filename)}")
             self.writer = cv2.VideoWriter(str(filename),fourcc,fps,frame_size)
-
-        for sensor in self.sensors:
-            if sensor.is_depth_sensor():
-                # print("Configuring depth sensor")
-                sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
-                # sensor.set_option(rs.option.visual_preset, 5)   # High-accuracy preset
-                sensor.set_option(rs.option.laser_power, 360)   # Max laser power
-                sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
-
-            else:  # RGB Sensor
-                continue
-                # sensor.set_option(rs.option.sharpness, 100)  # Increase sharpness
-                # sensor.set_option(rs.option.exposure, 100)  # Adjust exposure (manual mode)
-                # sensor.set_option(rs.option.gain, 16)  # Increase gain for better brightness
-                # sensor.set_option(rs.option.white_balance, 4500)  # Adjust white balance
-                # sensor.set_option(rs.option.enable_auto_exposure, 1)  # Enable auto exposure
-
 
         # Retrieve camera intrinsics from RealSense
         intr = self.profile.get_stream(rs.stream.color).as_video_stream_profile().get_intrinsics()
@@ -111,7 +100,10 @@ class RealSenseInterfaceAsync:
     def snow_model(self):
         # factor: sensitivity conversion from Picam R2 to RealSense D435
         # snow_rate: gamma radiation variable for linear regression
-        factor = self.snow_factor*self.device.first_color_sensor().get_option(rs.option.gain)
+
+        rs_gain =
+        factor = self.snow_factor*self.device.first_color_sensor().get_option(rs.option.gain)*self.device.first_color_sensor().get_option(rs.option.exposure)/10000
+        print(f"Final factor: {factor} (Gain: {})")
         mean_0 = 34.01
         mean_slope = 42.11
         mean = factor*(mean_0 + mean_slope*np.sqrt(self.snow_rate))
