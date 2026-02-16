@@ -7,7 +7,7 @@ import threading
 import yaml
 from pathlib import Path
 from camera_utils import snow
-
+import time
 class RealSenseInterfaceAsync:
     def __init__(self, width=1280, height=720, fps=30, hec_path=None, recording_path=None, snow_factor=0.0, snow_rate=0.0):
 
@@ -16,6 +16,7 @@ class RealSenseInterfaceAsync:
         devices = ctx.query_devices()
         for dev in devices:
             dev.hardware_reset()
+        time.sleep(5)
 
         self.running = False
         self.pipeline = rs.pipeline()
