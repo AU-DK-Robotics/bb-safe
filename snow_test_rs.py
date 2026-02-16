@@ -27,7 +27,6 @@ while time.perf_counter()-t < 5:
     # cv2.imshow("Camera views with simulated gamma-ray noise", color_frame)
     # cv2.waitKey(0)
 
-camera.stop()
 print("Done")
 
 # # Show the output image with default application
