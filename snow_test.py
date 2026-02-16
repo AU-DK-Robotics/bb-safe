@@ -10,15 +10,15 @@ test_arr = np.zeros((1080,1920,3),np.uint8)
 test_arr[:,961:1920,:] = 127
 
 # Apply snow effect to test pixel values
-test_snow_arr, snow_arr = snow.apply(test_arr,lam=127)
+test_snow_arr, snow_arr = snow.apply(test_arr,mean=127,std=8)
 
 # Convert pixel values to image
 test_snow_img = Image.fromarray(test_snow_arr)
 snow_img = Image.fromarray(snow_arr)
 
 # Show the output image with default application
-# test_snow_img.show()
-# snow_img.show()
+test_snow_img.show()
+snow_img.show()
 
 test_snow_dark_arr = test_snow_arr[:,0:960,:]
 test_snow_light_arr = test_snow_arr[:,961:1920,:]
@@ -37,7 +37,7 @@ print(f"Light pixels: mean {mean_light}, variance {std_light**2}")
 dark_count, dark_bins = np.histogram(test_snow_dark_arr,bins=256)
 light_count, light_bins = np.histogram(test_snow_light_arr,bins=256)
 
-# plt.figure()
-# plt.stairs(dark_count,dark_bins)
-# plt.stairs(light_count,light_bins)
-# plt.show()
+plt.figure()
+plt.stairs(dark_count,dark_bins)
+plt.stairs(light_count,light_bins)
+plt.show()

@@ -1,6 +1,6 @@
 import numpy as np
 
-def apply(img,lam=127):
+def apply(img,mean,std):
 
     # Make a random generator
     rand_gen = np.random.default_rng()
@@ -10,7 +10,7 @@ def apply(img,lam=127):
 
     # Draw samples from the Poisson distribution with
     # lam expected number of events per image pixel
-    snow = rand_gen.poisson(lam=lam,size=img.shape)
+    snow = rand_gen.normal(loc=mean,scale=std,size=img.shape)
 
     # Normalize snow and pixel values
     snow = snow/255
