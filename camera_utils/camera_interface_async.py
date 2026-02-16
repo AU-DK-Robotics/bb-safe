@@ -112,13 +112,13 @@ class RealSenseInterfaceAsync:
         # factor: sensitivity conversion from Picam R2 to RealSense D435
         # snow_rate: gamma radiation variable for linear regression
         factor = self.snow_factor*self.device.first_color_sensor().get_option(rs.option.gain)
-        mean_0 = 0
-        mean_slope = 0
-        mean_reg = factor*(mean_0 + mean_slope*self.snow_rate)
-        var_0 = 0
-        var_slope = 0
-        var_reg = factor*(var_0 + var_slope*self.snow_rate)
-        return 0,0
+        mean_0 = 34.01
+        mean_slope = 42.11
+        mean = factor*(mean_0 + mean_slope*np.sqrt(self.snow_rate))
+        var_0 = 0.81
+        var_slope = 6.7
+        var = factor*(var_0 + var_slope*np.sqrt(self.snow_rate))
+        return mean,var
 
     def get_frames(self):
         """Retrieve the latest color and depth frames"""
