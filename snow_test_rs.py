@@ -4,13 +4,16 @@ from camera_utils import snow
 import matplotlib.pyplot as plt
 from camera_utils.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
 
+pi_t_exp = 1.3
+pi_gain = 1
+pi_pixel_area = 1.12**2
+rs_pixel_area = 1.4**2
+pi_rs_incomplete_conversion_factor = rs_pixel_area/(pi_pixel_area*pi_gain*pi_t_exp)
 
-pi_rs_conversion_factor = (rs_pixel_area*rs_t_exp)/(pi_pixel_area*pi_gain*pi_t_exp)
+print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplete_conversion_factor}")
 
-print(f"Conversion factor w/o RS gain: {pi_rs_conversion_factor}")
-
-
-camera = RealSenseInterface(snow_mean=mean,snow_std=std)
+gamma_rate = 600/60 # Gy/min
+camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate)
 
 while True:
 

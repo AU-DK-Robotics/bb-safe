@@ -6,10 +6,10 @@ import cv2
 import threading
 import yaml
 from pathlib import Path
-import snow
+from camera_utils import snow
 
 class RealSenseInterfaceAsync:
-    def __init__(self, width=1920, height=1080, fps=15, hec_path=None, recording_path=None, snow_factor=0, snow_rate=0):
+    def __init__(self, width=1920, height=1080, fps=15, hec_path=None, recording_path=None, snow_factor=0.0, snow_rate=0.0):
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
