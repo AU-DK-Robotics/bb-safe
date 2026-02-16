@@ -10,6 +10,13 @@ from camera_utils import snow
 
 class RealSenseInterfaceAsync:
     def __init__(self, width=1280, height=720, fps=30, hec_path=None, recording_path=None, snow_factor=0.0, snow_rate=0.0):
+
+        # Reset all connected Realsense devices
+        ctx = rs.context()
+        devices = ctx.query_devices()
+        for dev in devices:
+            dev.hardware_reset()
+
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
