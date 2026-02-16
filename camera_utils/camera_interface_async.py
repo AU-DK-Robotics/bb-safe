@@ -104,6 +104,7 @@ class RealSenseInterfaceAsync:
                 self.color_image, _ = snow.apply(self.color_image,mean=snow_mean,std=snow_std)
 
             if self.recording_path:
+                print("Writing frame")
                 self.writer.write(self.color_image)
 
             # cv2.imshow("Camera", self.color_image)
