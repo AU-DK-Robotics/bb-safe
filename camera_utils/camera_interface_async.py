@@ -106,8 +106,8 @@ class RealSenseInterfaceAsync:
             if self.recording_path:
                 self.writer.write(self.color_image)
 
-            cv2.imshow("Camera", self.color_image)
-            cv2.waitKey(1)
+            # cv2.imshow("Camera", self.color_image)
+            # cv2.waitKey(1)
 
     def snow_model(self):
         # factor: sensitivity conversion from Picam R2 to RealSense D435
