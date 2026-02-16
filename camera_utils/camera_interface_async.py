@@ -9,7 +9,7 @@ from pathlib import Path
 import snow
 
 class RealSenseInterfaceAsync:
-    def __init__(self, width=1280, height=720, fps=30, hec_path=Path(""), recording_path=Path(""), snow_strength=0):
+    def __init__(self, width=1920, height=1080, fps=15, hec_path=None, recording_path=None, snow_factor=0, snow_rate=0):
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
@@ -82,7 +82,8 @@ class RealSenseInterfaceAsync:
             # print(f"{c.size} {z.size} {zm.size}")
             if c.size and z.size and zm.size: break
 
-        self.snow_strength = snow_strength
+        self.snow_factor = snow_factor
+        self.snow_rate = snow_rate
 
     def update_frames(self):
         """Continuously update frames in a separate thread for real-time processing"""
@@ -98,15 +99,26 @@ class RealSenseInterfaceAsync:
             self.depth_colormap = np.asanyarray(self.colorizer.colorize(depth_frame).get_data())
 
             # Apply snow to RGB image
-            if self.snow_strength > 0:
-                self.color_image, _ = snow.apply(self.color_image,lam=self.snow_strength)
+            if self.snow_factor > 0:
+                snow_mean,snow_std=self.snow_model()
+                self.color_image, _ = snow.apply(self.color_image,mean=self.snow_mean,std=self.snow_std)
 
             # self.writer.write(self.color_image)
 
             cv2.imshow("Camera", self.color_image)
             cv2.waitKey(1)
 
-
+    def snow_model(self):
+        # factor: sensitivity conversion from Picam R2 to RealSense D435
+        # snow_rate: gamma radiation variable for linear regression
+        factor = self.snow_factor*self.device.first_color_sensor().get_option(rs.option.gain)
+        mean_0 = 0
+        mean_slope = 0
+        mean_reg = factor*(mean_0 + mean_slope*self.snow_rate)
+        var_0 = 0
+        var_slope = 0
+        var_reg = factor*(var_0 + var_slope*self.snow_rate)
+        return 0,0
 
     def get_frames(self):
         """Retrieve the latest color and depth frames"""
