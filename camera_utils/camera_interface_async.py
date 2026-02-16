@@ -9,7 +9,7 @@ from pathlib import Path
 import snow
 
 class RealSenseInterfaceAsync:
-    def __init__(self, calibration_path, out_dir, width=1280, height=720, fps=30, snow_strength=0):
+    def __init__(self, out_dir, width=1280, height=720, fps=30, hec_path=Path(""), snow_strength=0):
         self.running = False
         self.pipeline = rs.pipeline()
         self.config = rs.config()
@@ -63,9 +63,10 @@ class RealSenseInterfaceAsync:
         self.distortion_coeffs = np.array(intr.coeffs, dtype=np.float64)  # [k1, k2, p1, p2, k3] etc.
 
         # Load configuration
-        with open(calibration_path, "r") as file:
-            calibration = yaml.safe_load(file)
-        self.T_cam_matrix = np.array(calibration["ee2cam"]["data"])
+        if hec_path:
+            with open(hec_path, "r") as file:
+                calibration = yaml.safe_load(file)
+            self.T_cam_matrix = np.array(calibration["ee2cam"]["data"])
 
         # 🔹 Multi-threaded frame processing to improve FPS
         self.color_image = np.array([])
