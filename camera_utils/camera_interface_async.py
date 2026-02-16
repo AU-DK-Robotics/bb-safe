@@ -98,11 +98,6 @@ class RealSenseInterfaceAsync:
             self.depth_image = np.asanyarray(depth_frame.get_data())
             self.depth_colormap = np.asanyarray(self.colorizer.colorize(depth_frame).get_data())
 
-            # Apply snow to RGB image
-            if self.snow_factor > 0:
-                snow_mean,snow_std=self.snow_model()
-                self.color_image, _ = snow.apply(self.color_image,mean=snow_mean,std=snow_std)
-
             if self.recording_path:
                 print("Writing frame")
                 self.writer.write(self.color_image)
@@ -153,9 +148,15 @@ class RealSenseInterfaceAsync:
             #     cv2.COLORMAP_JET
             # )
 
-            return color_image, depth_image, depth_colormap
+            # Apply snow to RGB image
+            color_image_original = color_image.copy()
+            if self.snow_factor > 0:
+                snow_mean,snow_std=self.snow_model()
+                color_image, _ = snow.apply(color_image,mean=snow_mean,std=snow_std)
 
-        return np.array([]), np.array([]), np.array([])
+            return color_image, depth_image, depth_colormap, color_image_original
+
+        return np.array([]), np.array([]), np.array([]), np.array([])
 
     def stop(self):
         self.__del__()

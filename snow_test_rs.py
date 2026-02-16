@@ -21,9 +21,10 @@ print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplet
 gamma_rate = 600/60 # Gy/min
 camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate)
 
-color_frame,_,_  = camera.get_frames()
+color_frame, _, _, color_frame_orig  = camera.get_frames()
 
-cv2.imwrite(out_path / "image.png", color_frame)
+cv2.imwrite(out_path / "snow.png", color_frame)
+cv2.imwrite(out_path / "orig.png", color_frame_orig)
 
 print("Done")
 
