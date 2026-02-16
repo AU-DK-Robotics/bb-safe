@@ -3,6 +3,7 @@ from PIL import Image
 from camera_utils import snow
 import matplotlib.pyplot as plt
 from camera_utils.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
+import cv2
 
 pi_t_exp = 1.3
 pi_gain = 1
@@ -18,11 +19,10 @@ camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_
 while True:
 
     # Apply snow effect to test pixel values
-    test_snow_arr, snow_arr = snow.apply(test_arr,mean=127,std=8)
+    color_frame, _, _ = camera.get_frames()
 
-    # Convert pixel values to image
-    test_snow_img = Image.fromarray(test_snow_arr)
-    snow_img = Image.fromarray(snow_arr)
+    cv2.imshow("Camera views with simulated gamma-ray noise", color_frame)
+    cv2.waitKey(1)
 
 # # Show the output image with default application
 # test_snow_img.show()
