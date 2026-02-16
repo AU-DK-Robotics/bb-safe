@@ -101,7 +101,7 @@ class RealSenseInterfaceAsync:
             # Apply snow to RGB image
             if self.snow_factor > 0:
                 snow_mean,snow_std=self.snow_model()
-                self.color_image, _ = snow.apply(self.color_image,mean=self.snow_mean,std=self.snow_std)
+                self.color_image, _ = snow.apply(self.color_image,mean=snow_mean,std=snow_std)
 
             if self.recording_path:
                 self.writer.write(self.color_image)
