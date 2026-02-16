@@ -79,9 +79,10 @@ class RealSenseInterfaceAsync:
 
         # Make sure we're getting frames
         while True:
-            c,z,zm = self.get_frames()
+            c,z,zm,_ = self.get_frames()
             # print(f"{c.size} {z.size} {zm.size}")
-            if c.size and z.size and zm.size: break
+            if c.size and z.size and zm.size:
+                break
 
 
 
