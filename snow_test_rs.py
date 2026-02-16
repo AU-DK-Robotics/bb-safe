@@ -21,35 +21,15 @@ print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplet
 gamma_rate = 600/60 # Gy/min
 camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate)
 
-color_frame, _, _, color_frame_orig  = camera.get_frames()
+snow_img, _, _, color_frame_orig  = camera.get_frames()
 
-cv2.imwrite(out_path / "snow.png", color_frame)
+cv2.imwrite(out_path / "snow.png", snow_img)
 cv2.imwrite(out_path / "orig.png", color_frame_orig)
 
 print("Done")
 
-# # Show the output image with default application
-# test_snow_img.show()
-# snow_img.show()
 
-# test_snow_dark_arr = test_snow_arr[:,0:960,:]
-# test_snow_light_arr = test_snow_arr[:,961:1920,:]
-
-# # Analyze statistical properties of the output image
-# # mean of a Poisson distribution should equal its variance (std^2)
-# mean_dark  = np.mean(test_snow_dark_arr)
-# mean_light = np.mean(test_snow_light_arr)
-# std_dark  = np.std(test_snow_dark_arr,mean=mean_dark,ddof=1)
-# std_light = np.std(test_snow_light_arr,mean=mean_light,ddof=1)
-
-# print(f"Dark pixels: mean {mean_dark}, variance {std_dark**2}")
-# print(f"Light pixels: mean {mean_light}, variance {std_light**2}")
-
-# # Plot histograms
-# dark_count, dark_bins = np.histogram(test_snow_dark_arr,bins=256)
-# light_count, light_bins = np.histogram(test_snow_light_arr,bins=256)
-
-# plt.figure()
-# plt.stairs(dark_count,dark_bins)
-# plt.stairs(light_count,light_bins)
-# plt.show()
+# Analyze statistical properties of the output image
+mean  = np.mean(snow_img)
+std  = np.std(snow_img,mean=mean,ddof=1)
+print(f"Pixels: mean {mean}, variance {std**2}")
