@@ -101,9 +101,11 @@ class RealSenseInterfaceAsync:
         # factor: sensitivity conversion from Picam R2 to RealSense D435
         # snow_rate: gamma radiation variable for linear regression
 
-        rs_gain =
-        factor = self.snow_factor*self.device.first_color_sensor().get_option(rs.option.gain)*self.device.first_color_sensor().get_option(rs.option.exposure)/10000
-        print(f"Final factor: {factor} (Gain: {})")
+        rs_gain = self.color_sensor.get_option(rs.option.gain)
+        rs_texp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
+
+        factor = self.snow_factor*rs_gain*rs_texp
+        print(f"Final factor: {factor} (Gain: {rs_gain}, Exposure: {rs_texp} sec)")
         mean_0 = 34.01
         mean_slope = 42.11
         mean = factor*(mean_0 + mean_slope*np.sqrt(self.snow_rate))
