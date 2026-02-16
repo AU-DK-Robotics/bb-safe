@@ -32,4 +32,4 @@ print("Done")
 # Analyze statistical properties of the output image
 mean  = np.mean(snow_img)
 std  = np.std(snow_img,mean=mean,ddof=1)
-print(f"Pixels: mean {mean}, variance {std**2}")
+print(f"Pixels: mean {mean}, std {std}")
