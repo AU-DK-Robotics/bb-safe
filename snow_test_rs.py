@@ -22,8 +22,8 @@ while True:
     # Apply snow effect to test pixel values
     color_frame, _, _ = camera.get_frames()
 
-    cv2.imshow("Camera views with simulated gamma-ray noise", color_frame)
-    cv2.waitKey(0)
+    # cv2.imshow("Camera views with simulated gamma-ray noise", color_frame)
+    # cv2.waitKey(0)
 
 # # Show the output image with default application
 # test_snow_img.show()
