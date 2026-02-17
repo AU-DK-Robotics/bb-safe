@@ -210,13 +210,13 @@ def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = Non
 
 def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=None):
     while True:
-        randPose, xy = getRandomPoseXY(viewP, spread)
-        print(xy)
+        randPose, xyz = getRandomPoseXYZ(viewP, spread)
+        print(xyz)
         if rtde_c.getInverseKinematicsHasSolution(randPose):
             break
     randQ = rtde_c.getInverseKinematics(randPose, qnear=viewQ)
 
-    msg = f"View pose: {randPose.tolist()} (X-Y offset: {xy.tolist()})"
+    msg = f"View pose: {randPose.tolist()} (X-Y offset: {xyz.tolist()})"
     if log_path:
         with log_path.open("a") as f:
             f.write(msg + "\n")
@@ -224,13 +224,13 @@ def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=None):
     urMoveJ(rtde_c, rtde_c.getInverseKinematics(randPose,qnear=viewQ))
     return randQ
 
-def getRandomPoseXY(pose, spread):
+def getRandomPoseXYZ(pose, spread):
     rand_gen = np.random.default_rng()
-    xy = 2*rand_gen.random(2)-1
-    xy = xy * spread
-    pose_delta = np.concatenate([xy,np.zeros(4)])
+    # normal distribution with 99.7% of values within spread
+    xyz = rand_gen.normal(loc=0,scale=spread/3,size=3)
+    pose_delta = np.concatenate([xyz,np.zeros(3)])
     randPose = pose + pose_delta
-    return randPose, xy
+    return randPose, xyz
 
 def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_interface", attempts=3,
                     detection_save_path = None, depth_save_path = None, img_save_path=None, log_path=None):
@@ -315,12 +315,12 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
 
         if align_pose:
             if spread:
-                align_pose, xy_offset = getRandomPoseXY(align_pose, spread)
+                align_pose, xyz_offset = getRandomPoseXYZ(align_pose, spread)
             else:
-                xy_offset = np.zeros(2)
+                xyz_offset = np.zeros(3)
             insert_pose = align_pose.copy()
             insert_pose[2] = 0.216
-            msg = f"Alignment pose: {align_pose.tolist()} (X-Y offset: {xy_offset.tolist()})\nInsertion pose: {insert_pose.tolist()}"
+            msg = f"Alignment pose: {align_pose.tolist()} (X-Y offset: {xyz_offset.tolist()})\nInsertion pose: {insert_pose.tolist()}"
             print(msg)
             if log_path:
                 with log_path.open("a") as f:
