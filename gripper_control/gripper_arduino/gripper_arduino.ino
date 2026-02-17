@@ -3,7 +3,7 @@
 
 #define SERVO_PIN 3
 #define SONIC_PIN 12 // Sensor signal pin (SIG)
-#define MAX_DISTANCE 200 // Maximum distance to measure (in cm)
+#define MAX_DISTANCE 350 // Maximum distance to measure (in cm)
 #define DISTANCE_THRESHOLD 8 // Distance threshold to start the motor (in cm)
 #define TX_FREQ 100 // Frequency to transmit sensor data
 
@@ -74,10 +74,10 @@ void loop() {
       }
     }
   }
-  
+
   // Check if command(s) available on serial port and respond
   if (Serial.available() > 0) {
-    
+
     // Print current timestamp
     Serial.print(now_time);
     Serial.print(", \"");
@@ -85,7 +85,7 @@ void loop() {
     // Read oldest single-byte command from (ring?) buffer
     // We don't know when it arrived, only when we respond
     Serial.readBytes(chin,1);
-    
+
     // Print the received command
     Serial.print(chin);
     Serial.print("\", ");
@@ -131,14 +131,14 @@ void loop() {
         break;
       case '3':
         Serial.print("0, ");
-        
+
         // Read distance (ultrasound)
         distance = sonar.ping_cm();
         Serial.println(distance);
         break;
       case '4':
         Serial.print("0, ");
-        
+
         // Read pressure (force) voltages
         ReadVal1 = analogRead(PressurePin1);
         ReadVal2 = analogRead(PressurePin2);

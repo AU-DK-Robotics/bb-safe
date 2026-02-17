@@ -26,6 +26,7 @@ from serial.tools.list_ports import comports
 
 # Camera
 from camera_utils.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
+from camera_utils import snow
 
 # Object dection
 from detect_yolo import detectorYOLO
@@ -36,7 +37,7 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
                             desired_z_force = 0.0, out_dir = None,
                             vac_distance_threshold=0, K_fac=np.ones(6), C_fac=np.ones(6),
                             force_lowpass_alpha=0.2, pose_start = np.array([]),
-                            pos_err_threshold=0.001, zero_ft = True):
+                            pos_err_threshold=0.001, zero_ft = True, std = 0):
 
     csv_fields = ["Time",
                   "Iteration",
@@ -49,6 +50,11 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
                   "Fx", "Fy", "Fz", "Mx", "My", "Mz",
                   "K11", "K22", "K33", "K44", "K55", "K66",
                   "C11", "C22", "C33", "C44", "C55", "C66"]
+
+    if std > 0:
+        rand = np.random.default_rng()
+    else:
+        rand = None
 
     if not pose_start.size:
         pose_start = np.array(rtde_r.getActualTCPPose())
@@ -104,9 +110,14 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             z_error = curr_pose[2] - pose_end[2]
 
             # Force reading
-            force = rtde_r.getActualTCPForce()
+            force = np.array(rtde_r.getActualTCPForce())
+            if rand:
+                noise = rand.normal(loc=0,scale=std,size=(1,6))
+                force[0:3] = np.clip(force[0:3] + noise[0:3]*60,min=-30,max=30)
+                force[3:6] = np.clip(force[3:6] + noise[3:6]*20,min=-10,max=10)
+
             if force_lowpass_alpha:
-                filtered_force = lowPassFilter(np.array(force),filtered_force,force_lowpass_alpha)
+                filtered_force = lowPassFilter(force,filtered_force,force_lowpass_alpha)
             else:
                 filtered_force = force
             force_z_err = filtered_force[2] - desired_z_force
@@ -273,7 +284,7 @@ def getGripperSensors(ard,rtde_r):
         # return None, None, None
         raise(Exception("Communication with gripper sensors failed"))
 
-def getSensorsMultisample(ard,rtde_r,N,dt):
+def getSensorsMultisample(ard,rtde_r,N,dt,std=0):
 
     # Initialize arrays to store sensor readings
     dist = np.zeros((N))
@@ -292,10 +303,21 @@ def getSensorsMultisample(ard,rtde_r,N,dt):
         # Read the UR's 6-axis F-T sensor
         force[:,i] = rtde_r.getActualTCPForce()
 
+
         # Try to take measurements according to the schedule defined
         # by N and dt
         while (time.perf_counter() - t_start) < (dt*(i+1)):
             pass
+
+    if std>0:
+        # add noise equivalent to the normalized base camera noise rate
+        # by multiplying by each sensor's full scale, then clipping
+        rand = np.random.default_rng()
+        noise = rand.normal(loc=0,scale=std,size=(9,N))
+        dist = np.clip(dist + noise[0,:]*348,min=2,max=350)
+        arms = np.clip(arms + noise[1:3,:]*5,min=0,max=5)
+        force[0:3,:] = np.clip(force[0:3,:] + noise[3:6,:]*60,min=-30,max=30)
+        force[3:6,:] = np.clip(force[3:6,:] + noise[6:9,:]*20,min=-10,max=10)
 
     # Calculate and return sample statistics
     dist_mean  = np.mean(dist)
@@ -335,7 +357,7 @@ def connectGripper(serial_device, sertimeout):
 
     return ser
 
-def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, gamma_dose_rate = 0):
+def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, gamma_noise_rate = 0):
 
     # Connect to gripper (Arduino)
     ser = connectGripper(serial_device, sertimeout)
@@ -348,7 +370,7 @@ def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = Non
 
     # Connect to camera
     print("Connecting to RealSense camera... ",end="")
-    camera = RealSenseInterface(hec_path,out_dir,snow_rate=gamma_dose_rate)
+    camera = RealSenseInterface(hec_path,out_dir,snow_rate=gamma_noise_rate)
     print("OK")
 
     return ser, rtde_c, rtde_r, camera
@@ -766,10 +788,15 @@ engageGripper(ser, False, servo_time)
     # Desired gripper insertion force (TCP z-axis)
     ldict["insert_Fz"] = 8.0
 
-    # Amount of simulated gamma radiation "snow" :
-    # Expectation value of a Poisson distribution in terms of bits (DN)
-    # i.e. mean brightness of the noise when applied to a black image (out of 255)
-    gamma_dose_rate = 100/60 # Gy/h --> Gy/min
+    # Amount of simulated gamma radiation
+    gamma_dose_rate = 100/60 # Gy/min
+
+    # Returns Poisson exected value rate (DN/s) as a function of dose rate
+    gamma_noise_rate = snow.model(gamma_dose_rate)
+
+    # Crudely approximate the noise in other sensors as Gaussian with same
+    # normalized variance as the image sensor (mean = variance for Poisson)
+    base_noise_std_normalized = np.sqrt(gamma_noise_rate)/255
 
     # Number of samples and time between samples when reading F-T, range, and arm sensors
     n_samp = 50
@@ -791,7 +818,7 @@ engageGripper(ser, False, servo_time)
     ldict["response"] = "starting. planned actions: chase interface; evaluate scene."
 
     # Initialize devices
-    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_dose_rate)
+    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_noise_rate)
 
     # Hard-coded start pose
     ldict["viewQ"] = [1.8504924774169922, -1.4910245326212426, 0.5884845892535608, -0.6688453716090699, -1.5668700377093714, -0.5082209745990198]
