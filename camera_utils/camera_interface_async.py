@@ -111,7 +111,7 @@ class RealSenseInterfaceAsync:
 
     def snow_model(self):
         # factor: sensitivity conversion from Picam R2 to RealSense D435
-        # snow_rate: gamma radiation variable for linear regression
+        # snow_rate: gamma radiation variable for linear regression (Gy/min)
 
         rs_gain = self.color_sensor.get_option(rs.option.gain)
         factor = self.snow_factor*rs_gain
