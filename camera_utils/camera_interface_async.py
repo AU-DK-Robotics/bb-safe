@@ -22,8 +22,8 @@ class RealSenseInterfaceAsync:
         self.pipeline = rs.pipeline()
         self.config = rs.config()
 
-        self.config.enable_stream(rs.stream.color, width, height, rs.format.bgr8)
-        self.config.enable_stream(rs.stream.depth, width, height, rs.format.z16)
+        self.config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, 1)
+        self.config.enable_stream(rs.stream.depth, width, height, rs.format.z16, fps)
 
         self.profile = self.pipeline.start(self.config)
         self.align = rs.align(rs.stream.color)
