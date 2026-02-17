@@ -335,7 +335,7 @@ def connectGripper(serial_device, sertimeout):
 
     return ser
 
-def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, snow_strength = 0):
+def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, gamma_dose_rate = 0):
 
     # Connect to gripper (Arduino)
     ser = connectGripper(serial_device, sertimeout)
@@ -348,7 +348,7 @@ def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = Non
 
     # Connect to camera
     print("Connecting to RealSense camera... ",end="")
-    camera = RealSenseInterface(hec_path,out_dir,snow_strength=snow_strength)
+    camera = RealSenseInterface(hec_path,out_dir,snow_rate=gamma_dose_rate)
     print("OK")
 
     return ser, rtde_c, rtde_r, camera
@@ -769,7 +769,7 @@ engageGripper(ser, False, servo_time)
     # Amount of simulated gamma radiation "snow" :
     # Expectation value of a Poisson distribution in terms of bits (DN)
     # i.e. mean brightness of the noise when applied to a black image (out of 255)
-    snow_strength = 127
+    gamma_dose_rate = 100/60 # Gy/h --> Gy/min
 
     # Number of samples and time between samples when reading F-T, range, and arm sensors
     n_samp = 50
@@ -791,7 +791,7 @@ engageGripper(ser, False, servo_time)
     ldict["response"] = "starting. planned actions: chase interface; evaluate scene."
 
     # Initialize devices
-    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], snow_strength)
+    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_dose_rate)
 
     # Hard-coded start pose
     ldict["viewQ"] = [1.8504924774169922, -1.4910245326212426, 0.5884845892535608, -0.6688453716090699, -1.5668700377093714, -0.5082209745990198]
