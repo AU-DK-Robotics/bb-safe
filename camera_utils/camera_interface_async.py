@@ -16,7 +16,7 @@ class RealSenseInterfaceAsync:
         devices = ctx.query_devices()
         for dev in devices:
             dev.hardware_reset()
-        time.sleep(5)
+        time.sleep(10)
 
         self.running = False
         self.pipeline = rs.pipeline()
