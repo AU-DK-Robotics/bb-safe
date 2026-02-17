@@ -48,7 +48,7 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
         arms = arms_arr.flatten()
         force = force_arr.flatten()
 
-    return dist, arms, force
+    return force, dist, arms
 
 def getPoseMatrix(rtde_r):
     """

@@ -380,8 +380,8 @@ def evaluateScene(model, camera, eval_mode, img_save_path=None, log_path=None):
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=None, log_path=None):
-    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
+def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
+    force_mean, dist_mean, arms_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
 
     dist_str = stringify_distance(dist_mean)
 
@@ -407,8 +407,8 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_pat
             f.write(msg+"\n")
     return response, uuid()
 
-def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_path=None, log_path=None):
-    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
+def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
+    force_mean, dist_mean, arms_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
     force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
 
@@ -436,8 +436,8 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_pat
                 f.write(msg+"\n")
     return response, uuid()
 
-def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=None, log_path=None):
-    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
+def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
+    force_mean, dist_mean, arms_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
     arms_str = stringify_force_gauge(arms_mean)
     dist_str = stringify_distance(dist_mean)
 
@@ -472,8 +472,8 @@ def evaluate(model, camera, prefix, img_save_path = None, log_path = None):
     response, _ = model.infer(img_rgb, prefix, img_save_path = img_save_path, log_path = log_path)
     return response
 
-def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = None):
-    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
+def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, std=0.0, csv_path = None):
+    force_mean, dist_mean, arms_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
     # force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
     arms_str = stringify_force_gauge(arms_mean)
@@ -618,7 +618,7 @@ engageGripper(ser, False, servo_time)
 
     # Crudely approximate the noise in other sensors as Gaussian with same
     # normalized variance as the image sensor (mean = variance for Poisson)
-    base_noise_std_normalized = np.sqrt(gamma_noise_rate)/255
+    sensor_noise_std_norm = np.sqrt(gamma_noise_rate)/255
 
     # Number of samples and time between samples when reading F-T, range, and arm sensors
     n_samp = 50
@@ -640,7 +640,7 @@ engageGripper(ser, False, servo_time)
     ldict["response"] = "starting. planned actions: chase interface; evaluate scene."
 
     # Initialize devices
-    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_noise_rate)
+    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_noise_rate=gamma_noise_rate)
 
     # Hard-coded start pose
     ldict["viewQ"] = [1.8504924774169922, -1.4910245326212426, 0.5884845892535608, -0.6688453716090699, -1.5668700377093714, -0.5082209745990198]
