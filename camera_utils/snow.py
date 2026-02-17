@@ -32,3 +32,25 @@ def apply(img,mean):
     snow = (255*snow).astype(np.uint8)
 
     return snow_img, snow
+
+def model(dose_rate,t_exp,factor=1.0,gain=1.0):
+    # factor: sensitivity conversion from Picam R2 to RealSense D435
+    # snow_rate: gamma radiation variable for linear regression (Gy/min)
+
+    factor = factor*gain
+    print(f"Final factor: {factor} (Gain: {gain})")
+
+    print(f"Exposure time: {t_exp} sec")
+
+    print(f"Dose rate: {dose_rate} Gy/min")
+
+    mean_slope = 66.034 * (dose_rate ** 0.28)
+    mean = factor*(mean_slope*t_exp)
+
+    print(f"Resulting Poisson distribution expected value: {mean}")
+
+    # std_0 = 0.81
+    # std_slope = 6.7
+    # std = (t_exp/1.3)*factor*(std_0 + std_slope*np.sqrt(self.snow_rate))
+
+    return mean

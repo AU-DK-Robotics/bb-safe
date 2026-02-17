@@ -109,26 +109,6 @@ class RealSenseInterfaceAsync:
             # cv2.imshow("Camera", self.color_image)
             # cv2.waitKey(1)
 
-    def snow_model(self):
-        # factor: sensitivity conversion from Picam R2 to RealSense D435
-        # snow_rate: gamma radiation variable for linear regression (Gy/min)
-
-        rs_gain = self.color_sensor.get_option(rs.option.gain)
-        factor = self.snow_factor*rs_gain
-        print(f"Final factor: {factor} (Gain: {rs_gain})")
-
-        t_exp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
-        print(f"Exposure time: {t_exp} sec")
-
-        mean_slope = 66.034 * (self.snow_rate ** 0.28)
-        mean = factor*(mean_slope*t_exp)
-
-        # std_0 = 0.81
-        # std_slope = 6.7
-        # std = (t_exp/1.3)*factor*(std_0 + std_slope*np.sqrt(self.snow_rate))
-
-        return mean
-
     def get_frames(self):
         """Retrieve the latest color and depth frames"""
         if self.color_image.size and self.depth_image.size and self.depth_colormap.size:
@@ -158,9 +138,10 @@ class RealSenseInterfaceAsync:
             # Apply snow to RGB image
             color_image_original = color_image.copy()
             if self.snow_factor > 0:
-                snow_mean = self.snow_model()
-                # print(f"Noise mean: {snow_mean}, noise std: {snow_std}")
-                print(f"Noise: {snow_mean}")
+                t_exp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
+                rs_gain = self.color_sensor.get_option(rs.option.gain)
+
+                snow_mean = snow.model(self.snow_rate,t_exp,gain=rs_gain)
                 color_image, _ = snow.apply(color_image,mean=snow_mean)
 
             return color_image, depth_image, depth_colormap, color_image_original
