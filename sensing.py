@@ -29,6 +29,10 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
             while (time.perf_counter() - t_start) < (dt*(i+1)):
                 pass
 
+    dist_arr_orig  = dist_arr.copy()
+    arms_arr_orig  = arms_arr.copy()
+    force_arr_orig = force_arr.copy()
+
     if std>0:
         # add noise equivalent to the normalized base camera noise rate
         # by multiplying by each sensor's full scale, then clipping
@@ -48,7 +52,7 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
         arms = arms_arr.flatten()
         force = force_arr.flatten()
 
-    return force, dist, arms
+    return force, dist, arms, force_arr_orig, dist_arr_orig, arms_arr_orig
 
 def getPoseMatrix(rtde_r):
     """
