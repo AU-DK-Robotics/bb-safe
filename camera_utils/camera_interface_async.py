@@ -44,7 +44,7 @@ class RealSenseInterfaceAsync:
         self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
         self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
-        self.color_sensor.set_option(rs.option.enable_auto_exposure,1) # 1 sec
+        # self.color_sensor.set_option(rs.option.enable_auto_exposure,1) # default unless exposure set
         # self.color_sensor.set_option(rs.option.exposure,10000) # 1 sec
         # self.color_sensor.set_option(rs.option.gain,1) #
 
