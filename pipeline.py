@@ -5,7 +5,6 @@ import time
 from time import sleep
 import numpy as np
 import math
-import platform
 from collections import deque
 from enum import StrEnum
 from typing import List
@@ -21,8 +20,7 @@ from rtde_control import RTDEControlInterface
 from rtde_receive import RTDEReceiveInterface
 
 # Gripper
-from serial import Serial
-from serial.tools.list_ports import comports
+from gripper_control import gripper
 
 # Camera
 from camera_utils.camera_interface_async import RealSenseInterfaceAsync as RealSenseInterface
@@ -32,6 +30,9 @@ from camera_utils import snow
 from detect_yolo import detectorYOLO
 from object_detection.coordinate_transformation import transform_to_robot_frame
 import cv2
+
+# Sensors
+import sensing
 
 def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
                             desired_z_force = 0.0, out_dir = None,
@@ -50,11 +51,6 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
                   "Fx", "Fy", "Fz", "Mx", "My", "Mz",
                   "K11", "K22", "K33", "K44", "K55", "K66",
                   "C11", "C22", "C33", "C44", "C55", "C66"]
-
-    if std > 0:
-        rand = np.random.default_rng()
-    else:
-        rand = None
 
     if not pose_start.size:
         pose_start = np.array(rtde_r.getActualTCPPose())
@@ -85,7 +81,6 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
         if zero_ft:
             rtde_c.zeroFtSensor()
 
-        force = np.zeros(6)
         desired_force = np.zeros(6)
         desired_force[2] = desired_z_force
         force_z_err = 0.0
@@ -109,12 +104,8 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             curr_pose = np.array(rtde_r.getActualTCPPose())
             z_error = curr_pose[2] - pose_end[2]
 
-            # Force reading
-            force = np.array(rtde_r.getActualTCPForce())
-            if rand:
-                noise = rand.normal(loc=0,scale=std,size=(1,6))
-                force[0:3] = np.clip(force[0:3] + noise[0:3]*60,min=-30,max=30)
-                force[3:6] = np.clip(force[3:6] + noise[3:6]*20,min=-10,max=10)
+            # Force reading with simulated noise
+            force = sensing.read(rtde_r,std=std)
 
             if force_lowpass_alpha:
                 filtered_force = lowPassFilter(force,filtered_force,force_lowpass_alpha)
@@ -175,25 +166,6 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             rtde_c.waitPeriod(t_start)
         rtde_c.servoStop()
 
-def getPoseMatrix(rtde_r):
-    """
-    Return ^base T_ee as a 4x4 homogeneous transformation matrix.
-    UR 'getActualTCPPose()' returns [x, y, z, Rx, Ry, Rz] in meters / axis-angle.
-    """
-    tcp_pose = rtde_r.getActualTCPPose()
-    x, y, z, rx, ry, rz = tcp_pose
-
-    # Convert axis-angle (rotation vector) to rotation matrix
-    rotation_vector = np.array([rx, ry, rz], dtype=float)
-    R, _ = cv2.Rodrigues(rotation_vector)  # Convert to 3x3 rotation matrix
-
-    # Build the 4x4 homogeneous transformation matrix
-    pose_mat = np.eye(4)
-    pose_mat[:3, :3] = R
-    pose_mat[:3, 3] = [x, y, z]
-
-    return pose_mat
-
 def lowPassFilter(new_value, prev_filtered, alpha):
     """
     Exponential moving average (EMA) low-pass filter for vector data.
@@ -218,149 +190,10 @@ def urMoveJ(rtde_c,data,speed=0.25,post_move_wait=1,isIK=False):
     sleep(post_move_wait)
     return data
 
-def gripperSerialCmd(ard,msg,enc="ASCII",verbose=False):
-    if verbose:
-        print("Wrote: {}".format(msg))
-    ard.write(bytes(msg,encoding=enc))
-    res = ard.readline().decode(encoding='ASCII')
-    if verbose:
-        if res:
-            # Response already includes a newline
-            print("Read: {}".format(res),end="")
-        else:
-            print("No response")
-    return res
-
-def getGripperSensors(ard,rtde_r):
-    res = gripperSerialCmd(ard,"5")
-    if res:
-        val = res.split(", ")
-        t = int(val[0])
-        sens = val[3].split(" ")
-        dist = int(sens[0])
-
-        # Apply invisible boundary representing the top of the breeding blanket
-        T_base_tcp = getPoseMatrix(rtde_r)
-        tcp_z = T_base_tcp[2,3]
-        if tcp_z >= 0.35:
-            T_base_interface = np.eye(4)
-            T_base_interface[0,3] = 0.32   # x
-            T_base_interface[1,3] = -0.21  # y
-            T_base_interface[2,3] = 0.1365 # z
-            T_interface_base = np.linalg.inv(T_base_interface)
-            T_tcp_ultra = np.eye(4)
-            T_tcp_ultra[1,3] = 0.077 # y
-            T_tcp_ultra[2,3] = 0.030 # z
-            T_base_ultra = np.matmul(T_base_tcp,T_tcp_ultra)
-            T_interface_ultra = np.matmul(T_interface_base,T_base_ultra)
-
-            # interface dimensions
-            width_x = 0.197
-            width_y = 0.13702
-            c = 0.036   # corner chamfer
-
-            # ultrasound coords relative to interface
-            x = T_interface_ultra[0,3]
-            y = T_interface_ultra[1,3]
-            z = T_interface_ultra[2,3]
-
-            # print(T_base_ultra)
-
-            bounds = [ np.abs(y) > width_y/2,
-                    np.abs(x) > width_x/2,
-                    y > -x + width_x/2 - c + width_y/2,
-                    y >  x + width_x/2 - c + width_y/2,
-                    y < -x - width_x/2 + c - width_y/2,
-                    y <  x - width_x/2 + c - width_y/2 ]
-
-            # Assume vertical gripper orientation
-            if np.any(bounds):
-                print(f"Restricting distance measurement due to out of bounds: {[int(i) for i in bounds]}")
-                dist = round(z*100)
-
-        arms = (float(sens[1]), float(sens[2])) # R, width_x
-        return t, dist, arms
-    else:
-        # return None, None, None
-        raise(Exception("Communication with gripper sensors failed"))
-
-def getSensorsMultisample(ard,rtde_r,N,dt,std=0):
-
-    # Initialize arrays to store sensor readings
-    dist = np.zeros((N))
-    arms = np.zeros((2,N))
-    force = np.zeros((6,N))
-
-    # Start keeping track of time
-    t_start = time.perf_counter()
-
-    # i from 0 to N-1
-    for i in range(0,N):
-
-        # Read the gripper sensors (ultrasonic range and arm forces)
-        _ , dist[i], arms[:,i] = getGripperSensors(ard,rtde_r)
-
-        # Read the UR's 6-axis F-T sensor
-        force[:,i] = rtde_r.getActualTCPForce()
-
-
-        # Try to take measurements according to the schedule defined
-        # by N and dt
-        while (time.perf_counter() - t_start) < (dt*(i+1)):
-            pass
-
-    if std>0:
-        # add noise equivalent to the normalized base camera noise rate
-        # by multiplying by each sensor's full scale, then clipping
-        rand = np.random.default_rng()
-        noise = rand.normal(loc=0,scale=std,size=(9,N))
-        dist = np.clip(dist + noise[0,:]*348,min=2,max=350)
-        arms = np.clip(arms + noise[1:3,:]*5,min=0,max=5)
-        force[0:3,:] = np.clip(force[0:3,:] + noise[3:6,:]*60,min=-30,max=30)
-        force[3:6,:] = np.clip(force[3:6,:] + noise[6:9,:]*20,min=-10,max=10)
-
-    # Calculate and return sample statistics
-    dist_mean  = np.mean(dist)
-    arms_mean  = np.mean(arms,  axis=1, keepdims=True)
-    force_mean = np.mean(force, axis=1, keepdims=True)
-    dist_std   = np.std(dist,  mean=dist_mean,  ddof=1)
-    arms_std   = np.std(arms,  mean=arms_mean,  ddof=1, axis=1)
-    force_std  = np.std(force, mean=force_mean, ddof=1, axis=1)
-
-    return dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std
-
-def connectGripper(serial_device, sertimeout):
-    # If no device given, pick one automatically
-    if not serial_device:
-        serdev = [i.device for i in comports()]
-        if platform.system() == "Linux":
-            serdev = [i for i in serdev if i.startswith("/dev/ttyACM")]
-    else:
-        serdev = None
-
-    if serdev:
-        serial_device = serdev[0]
-    else:
-        raise Exception("Could not find any Arduino serial devices")
-
-    print("Connecting to gripper (serial device " + serial_device + ")... ",end="")
-
-    ser = Serial(serial_device,timeout=sertimeout,baudrate=115200,write_timeout=sertimeout)
-
-    # Make sure the Arduino is responding consistently
-    res = None
-    for _ in range(5):
-        res = gripperSerialCmd(ser,"0",verbose=False)
-    if not res:
-        raise(Exception("Arduino not responding"))
-    print("OK")
-
-    return ser
-
 def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, gamma_noise_rate = 0):
 
     # Connect to gripper (Arduino)
-    ser = connectGripper(serial_device, sertimeout)
+    ser = gripper.connectGripper(serial_device, sertimeout)
 
     # Connect to UR robot
     print("Connecting to UR RTDE receive and control interfaces... ",end="")
@@ -446,7 +279,7 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
             x, y, w, h = (round(i) for i in obj["bbox"])
             cx, cy = (round(i) for i in obj["center"])
 
-            baseTee_matrix = getPoseMatrix(rtde_r)
+            baseTee_matrix = sensing.getPoseMatrix(rtde_r)
 
             depth = obj["depth"]
 
@@ -496,21 +329,13 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
 
     raise Exception(f"No detections after {attempts} attempts")
 
-def engageGripper(ard,cmd,movetime,post_move_wait=1):
-    if cmd:
-        gripperSerialCmd(ard,"2")
-    else:
-        gripperSerialCmd(ard,"1")
-    sleep(movetime)
-    sleep(post_move_wait)
-
 class EvalPrefix(StrEnum):
     SCENE  = "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter."
     ALIGNMENT  = "based on the image, and the distance to interface {ultrasonic_dis_cm}, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement."
     INSERTION  = "based on the image, contact wrench {tcp_wrench_N_Nm}, and the distance to interface {ultrasonic_dis_cm}, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement."
     ENGAGEMENT = "based on the image, the distance to interface {ultrasonic_dis_cm}, and the folding arm force {force_gauge}, evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement."
 
-def stringify_wrench(w: List[float]) -> str:
+def stringify_wrench(w) -> str:
     if not isinstance(w, (list, tuple)) or len(w) < 6:
         return "unknown"
     fx, fy, fz, tx, ty, tz = w[:6]
@@ -556,7 +381,7 @@ def evaluateScene(model, camera, eval_mode, img_save_path=None, log_path=None):
     return response, uuid()
 
 def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=None, log_path=None):
-    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
 
     dist_str = stringify_distance(dist_mean)
 
@@ -583,7 +408,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_pat
     return response, uuid()
 
 def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_path=None, log_path=None):
-    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
     force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
 
@@ -612,7 +437,7 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, img_save_pat
     return response, uuid()
 
 def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, img_save_path=None, log_path=None):
-    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
     arms_str = stringify_force_gauge(arms_mean)
     dist_str = stringify_distance(dist_mean)
 
@@ -648,7 +473,7 @@ def evaluate(model, camera, prefix, img_save_path = None, log_path = None):
     return response
 
 def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = None):
-    dist_mean, arms_mean, force_mean, dist_std, arms_std, force_std = getSensorsMultisample(ard,rtde_r,N,dt)
+    dist_mean, arms_mean, force_mean = sensing.read(rtde_r,ard=ard,N=N,dt=dt)
     # force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
     arms_str = stringify_force_gauge(arms_mean)
@@ -664,11 +489,8 @@ def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, csv_path = None)
         data.extend(eval_mode)
         data.append(spread)
         data.append(dist_mean)
-        data.append(dist_std)
         data.extend(arms_mean)
-        data.extend(arms_std)
         data.extend(force_mean)
-        data.extend(force_std)
         data.append(int(succ))
         with csv_path.open("a") as f:
             writer = csv.writer(f, delimiter = ";")
