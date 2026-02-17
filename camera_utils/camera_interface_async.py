@@ -40,10 +40,9 @@ class RealSenseInterfaceAsync:
         self.color_sensor = self.device.first_color_sensor()
         self.depth_scale = self.depth_sensor.get_depth_scale()
 
-        # self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
-        # sensor.set_option(rs.option.visual_preset, 5)   # High-accuracy preset
-        # self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
-        # self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
+        self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
+        self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
+        self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
         self.recording_path = recording_path
         if self.recording_path:
@@ -111,17 +110,18 @@ class RealSenseInterfaceAsync:
         # snow_rate: gamma radiation variable for linear regression
 
         rs_gain = self.color_sensor.get_option(rs.option.gain)
-        rs_texp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
+        factor = self.snow_factor*rs_gain
+        print(f"Final factor: {factor} (Gain: {rs_gain}")
 
-        factor = self.snow_factor*rs_gain*rs_texp
-        print(f"Final factor: {factor} (Gain: {rs_gain}, Exposure: {rs_texp} sec)")
-        mean_0 = 34.01
-        mean_slope = 42.11
-        mean = factor*(mean_0 + mean_slope*np.sqrt(self.snow_rate))
-        var_0 = 0.81
-        var_slope = 6.7
-        var = factor*(var_0 + var_slope*np.sqrt(self.snow_rate))
-        return mean,var
+        t_exp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
+        mean_slope = 66.034 * (self.snow_rate ** 0.28)
+        mean = factor*(mean_slope*t_exp)
+
+        # std_0 = 0.81
+        # std_slope = 6.7
+        # std = (t_exp/1.3)*factor*(std_0 + std_slope*np.sqrt(self.snow_rate))
+
+        return mean
 
     def get_frames(self):
         """Retrieve the latest color and depth frames"""
@@ -152,9 +152,10 @@ class RealSenseInterfaceAsync:
             # Apply snow to RGB image
             color_image_original = color_image.copy()
             if self.snow_factor > 0:
-                snow_mean,snow_std=self.snow_model()
-                print(f"Noise mean: {snow_mean}, noise std: {snow_std}")
-                color_image, _ = snow.apply(color_image,mean=snow_mean,std=snow_std)
+                snow_mean = self.snow_model()
+                # print(f"Noise mean: {snow_mean}, noise std: {snow_std}")
+                print(f"Noise: {snow_mean}")
+                color_image, _ = snow.apply(color_image,mean=snow_mean)
 
             return color_image, depth_image, depth_colormap, color_image_original
 

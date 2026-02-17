@@ -10,11 +10,10 @@ import time
 out_path = Path("snow_test_rs")
 out_path.mkdir(parents=True,exist_ok=True)
 
-pi_t_exp = 1.3
-pi_gain = 5
+pi_gain = 1
 pi_pixel_area = 1.12**2
 rs_pixel_area = (1.4*(1080/720))**2
-pi_rs_incomplete_conversion_factor = rs_pixel_area/(pi_pixel_area*pi_gain*pi_t_exp)
+pi_rs_incomplete_conversion_factor = rs_pixel_area/(pi_pixel_area*pi_gain)
 
 print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplete_conversion_factor}")
 
