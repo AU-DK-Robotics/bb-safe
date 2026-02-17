@@ -22,8 +22,8 @@ class RealSenseInterfaceAsync:
         self.pipeline = rs.pipeline()
         self.config = rs.config()
 
-        self.config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, fps)
-        self.config.enable_stream(rs.stream.depth, width, height, rs.format.z16, fps)
+        self.config.enable_stream(rs.stream.color, width, height, rs.format.bgr8)
+        self.config.enable_stream(rs.stream.depth, width, height, rs.format.z16)
 
         self.profile = self.pipeline.start(self.config)
         self.align = rs.align(rs.stream.color)
@@ -43,6 +43,9 @@ class RealSenseInterfaceAsync:
         # self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
         self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
         self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
+
+        self.color_sensor.set_option(rs.option.exposure,10000) # 1 sec
+        self.color_sensor.set_option(rs.option.gain,1) #
 
         self.recording_path = recording_path
         if self.recording_path:
