@@ -15,7 +15,7 @@ pi_pixel_area = 1.12**2
 rs_pixel_area = (1.4*(1080/720))**2
 pi_rs_incomplete_conversion_factor = rs_pixel_area/(pi_pixel_area*pi_gain)
 
-print(f"Conversion factor neglecting RS gain, RS exposure time: {pi_rs_incomplete_conversion_factor}")
+print(f"Conversion factor neglecting RS gain: {pi_rs_incomplete_conversion_factor}")
 
 gamma_rate = 600/60 # Gy/min
 camera = RealSenseInterface(snow_factor=pi_rs_incomplete_conversion_factor,snow_rate=gamma_rate)

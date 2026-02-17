@@ -16,7 +16,7 @@ class RealSenseInterfaceAsync:
         devices = ctx.query_devices()
         for dev in devices:
             dev.hardware_reset()
-        time.sleep(10)
+        time.sleep(5)
 
         self.running = False
         self.pipeline = rs.pipeline()
@@ -40,7 +40,7 @@ class RealSenseInterfaceAsync:
         self.color_sensor = self.device.first_color_sensor()
         self.depth_scale = self.depth_sensor.get_depth_scale()
 
-        self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
+        # self.depth_sensor.set_option(rs.option.visual_preset, rs.rs400_visual_preset.high_accuracy)
         self.depth_sensor.set_option(rs.option.laser_power, 360)   # Max laser power
         self.depth_sensor.set_option(rs.option.emitter_enabled, 1) # Enable depth emitter
 
