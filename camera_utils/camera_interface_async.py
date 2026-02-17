@@ -111,7 +111,7 @@ class RealSenseInterfaceAsync:
 
         rs_gain = self.color_sensor.get_option(rs.option.gain)
         factor = self.snow_factor*rs_gain
-        print(f"Final factor: {factor} (Gain: {rs_gain}")
+        print(f"Final factor: {factor} (Gain: {rs_gain})")
 
         t_exp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
         mean_slope = 66.034 * (self.snow_rate ** 0.28)
