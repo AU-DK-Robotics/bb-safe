@@ -7,7 +7,6 @@ import numpy as np
 import math
 from collections import deque
 from enum import StrEnum
-from typing import List
 from PIL import Image
 from datetime import datetime
 import csv
