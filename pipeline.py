@@ -215,7 +215,7 @@ def getRandomViewQ(rtde_c, viewP, viewQ, spread, log_path=None):
             break
     randQ = rtde_c.getInverseKinematics(randPose, qnear=viewQ)
 
-    msg = f"View pose: {randPose.tolist()} (X-Y offset: {xyz.tolist()})"
+    msg = f"View pose: {randPose.tolist()} (X-Y-Z offset: {xyz.tolist()})"
     if log_path:
         with log_path.open("a") as f:
             f.write(msg + "\n")
