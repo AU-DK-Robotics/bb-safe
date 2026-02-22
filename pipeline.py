@@ -104,7 +104,7 @@ def variableAdmittanceMoveL(rtde_c, rtde_r, pose_end, T, dt, M, C, K,
             z_error = curr_pose[2] - pose_end[2]
 
             # Force reading with simulated noise
-            force = sensing.read(rtde_r,std=std)
+            force, _, _, _, _, _, _ = sensing.read(rtde_r,std=std)
 
             if force_lowpass_alpha:
                 filtered_force = lowPassFilter(force,filtered_force,force_lowpass_alpha)
@@ -380,7 +380,7 @@ def evaluateScene(model, camera, eval_mode, img_save_path=None, log_path=None):
     return response, uuid()
 
 def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
-    force_mean, dist_mean, arms_mean, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
+    force_mean, dist_mean, arms_mean, _, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
 
     dist_str = stringify_distance(dist_mean)
 
@@ -407,7 +407,7 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img
     return response, uuid()
 
 def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
-    force_mean, dist_mean, arms_mean, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
+    force_mean, dist_mean, arms_mean, _, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
     force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
 
@@ -436,7 +436,7 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, std=0.0, img
     return response, uuid()
 
 def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
-    force_mean, dist_mean, arms_mean, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
+    force_mean, dist_mean, arms_mean, _, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
     arms_str = stringify_force_gauge(arms_mean)
     dist_str = stringify_distance(dist_mean)
 
@@ -472,7 +472,7 @@ def evaluate(model, camera, prefix, img_save_path = None, log_path = None):
     return response
 
 def finalEvaluation(rtde_r, ard, eval_mode, now, spread, N, dt, std=0.0, csv_path = None):
-    force_mean, dist_mean, arms_mean, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
+    force_mean, dist_mean, arms_mean, _, _, _, _ = sensing.read(rtde_r,ard=ard,N=N,dt=dt,std=std)
     # force_str = stringify_wrench(force_mean)
     dist_str = stringify_distance(dist_mean)
     arms_str = stringify_force_gauge(arms_mean)

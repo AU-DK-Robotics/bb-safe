@@ -31,7 +31,6 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
         # Read the UR's 6-axis F-T sensor
         wrench_arr[:,i] = ur.getActualTCPForce()
 
-
         # Try to take measurements according to the schedule defined
         # by N and dt
         if N > i+1:
@@ -41,6 +40,8 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
     dist_arr_orig  = dist_arr.copy()
     arms_arr_orig  = arms_arr.copy()
     wrench_arr_orig = wrench_arr.copy()
+
+    predicted_drifts = np.zeros((9))
 
     if std>0:
         # add noise equivalent to the normalized base camera noise rate
@@ -58,39 +59,18 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
         wrench_arr[0:3,:] = np.clip(wrench_arr[0:3,:] + noise[3:6,:]*FS["force"],min=FS["force_clip"][0],max=FS["force_clip"][1])
         wrench_arr[3:6,:] = np.clip(wrench_arr[3:6,:] + noise[6:9,:]*FS["torque"],min=FS["torque_clip"][0],max=FS["torque_clip"][1])
 
-        # Predicted drift reports from the *clipped noisy samples*
-        # sigma per channel = std_norm * full_scale
-        predicted_drift_dist, _ = drift_report_from_clipped_samples(dist_arr, sigma=std_dist, L=FS["dist_clip"][0], U=FS["dist_clip"][1], N_nominal=N)
-        predicted_drift_arm1, _ = drift_report_from_clipped_samples(arms_arr[0, :], sigma=std_arms, L=FS["arms_clip"][0], U=FS["arms_clip"][1], N_nominal=N)
-        predicted_drift_arm2, _ = drift_report_from_clipped_samples(arms_arr[1, :], sigma=std_arms, L=FS["arms_clip"][0], U=FS["arms_clip"][1], N_nominal=N)
-        predicted_drift_wrench_force_x, _ = drift_report_from_clipped_samples(wrench_arr[1, :], sigma=std_force, L=FS["force_clip"][0], U=FS["force_clip"][1], N_nominal=N)
-        predicted_drift_wrench_force_y, _ = drift_report_from_clipped_samples(wrench_arr[2, :], sigma=std_force, L=FS["force_clip"][0], U=FS["force_clip"][1], N_nominal=N)
-        predicted_drift_wrench_force_z, _ = drift_report_from_clipped_samples(wrench_arr[3, :], sigma=std_force, L=FS["force_clip"][0], U=FS["force_clip"][1], N_nominal=N)
-        predicted_drift_wrench_torque_x, _ = drift_report_from_clipped_samples(wrench_arr[4, :], sigma=std_torque, L=FS["torque_clip"][0], U=FS["torque_clip"][1], N_nominal=N)
-        predicted_drift_wrench_torque_y, _ = drift_report_from_clipped_samples(wrench_arr[5, :], sigma=std_torque, L=FS["torque_clip"][0], U=FS["torque_clip"][1], N_nominal=N)
-        predicted_drift_wrench_torque_z, _ = drift_report_from_clipped_samples(wrench_arr[6, :], sigma=std_torque, L=FS["torque_clip"][0], U=FS["torque_clip"][1], N_nominal=N)
-    else:
-        predicted_drift_dist = 0.0
-        predicted_drift_arm1 = 0.0
-        predicted_drift_arm2 = 0.0
-        predicted_drift_wrench_force_x = 0.0
-        predicted_drift_wrench_force_y = 0.0
-        predicted_drift_wrench_force_z = 0.0
-        predicted_drift_wrench_torque_x = 0.0
-        predicted_drift_wrench_torque_y = 0.0
-        predicted_drift_wrench_torque_z = 0.0
-
-    predicted_drifts = [
-        predicted_drift_dist,
-        predicted_drift_arm1,
-        predicted_drift_arm2,
-        predicted_drift_wrench_force_x,
-        predicted_drift_wrench_force_y,
-        predicted_drift_wrench_force_z,
-        predicted_drift_wrench_torque_x,
-        predicted_drift_wrench_torque_y,
-        predicted_drift_wrench_torque_z
-    ]
+        if N>1:
+            # Predicted drift reports from the *clipped noisy samples*
+            # sigma per channel = std_norm * full_scale
+            predicted_drifts[0], _ = drift_report_from_clipped_samples(dist_arr, sigma=std_dist, L=FS["dist_clip"][0], U=FS["dist_clip"][1], N_nominal=N)
+            predicted_drifts[1], _ = drift_report_from_clipped_samples(arms_arr[0, :], sigma=std_arms, L=FS["arms_clip"][0], U=FS["arms_clip"][1], N_nominal=N)
+            predicted_drifts[2], _ = drift_report_from_clipped_samples(arms_arr[1, :], sigma=std_arms, L=FS["arms_clip"][0], U=FS["arms_clip"][1], N_nominal=N)
+            predicted_drifts[3], _ = drift_report_from_clipped_samples(wrench_arr[0, :], sigma=std_force, L=FS["force_clip"][0], U=FS["force_clip"][1], N_nominal=N)
+            predicted_drifts[4], _ = drift_report_from_clipped_samples(wrench_arr[1, :], sigma=std_force, L=FS["force_clip"][0], U=FS["force_clip"][1], N_nominal=N)
+            predicted_drifts[5], _ = drift_report_from_clipped_samples(wrench_arr[2, :], sigma=std_force, L=FS["force_clip"][0], U=FS["force_clip"][1], N_nominal=N)
+            predicted_drifts[6], _ = drift_report_from_clipped_samples(wrench_arr[4, :], sigma=std_torque, L=FS["torque_clip"][0], U=FS["torque_clip"][1], N_nominal=N)
+            predicted_drifts[7], _ = drift_report_from_clipped_samples(wrench_arr[4, :], sigma=std_torque, L=FS["torque_clip"][0], U=FS["torque_clip"][1], N_nominal=N)
+            predicted_drifts[8], _ = drift_report_from_clipped_samples(wrench_arr[5, :], sigma=std_torque, L=FS["torque_clip"][0], U=FS["torque_clip"][1], N_nominal=N)
 
     if N > 1:
         dist_mean_corr = np.mean(dist_arr,axis=1)
@@ -101,15 +81,16 @@ def read(ur,ard=None,std=0.0,N=1,dt=1):
         arms_mean_corr = arms_arr.flatten()
         wrench_mean_corr = wrench_arr.flatten()
 
-    dist_mean_corr[0] = dist_mean_corr[0] - predicted_drift_dist
-    arms_mean_corr[0] = arms_mean_corr[0] - predicted_drift_arm1
-    arms_mean_corr[1] = arms_mean_corr[1] - predicted_drift_arm2
-    wrench_mean_corr[0] = wrench_mean_corr[0] - predicted_drift_wrench_force_x
-    wrench_mean_corr[1] = wrench_mean_corr[1] - predicted_drift_wrench_force_y
-    wrench_mean_corr[2] = wrench_mean_corr[2] - predicted_drift_wrench_force_z
-    wrench_mean_corr[3] = wrench_mean_corr[3] - predicted_drift_wrench_torque_x
-    wrench_mean_corr[4] = wrench_mean_corr[4] - predicted_drift_wrench_torque_y
-    wrench_mean_corr[5] = wrench_mean_corr[5] - predicted_drift_wrench_torque_z
+    if std>0 and N>1:
+        dist_mean_corr[0] = dist_mean_corr[0] - predicted_drifts[0]
+        arms_mean_corr[0] = arms_mean_corr[0] - predicted_drifts[1]
+        arms_mean_corr[1] = arms_mean_corr[1] - predicted_drifts[2]
+        wrench_mean_corr[0] = wrench_mean_corr[0] - predicted_drifts[3]
+        wrench_mean_corr[1] = wrench_mean_corr[1] - predicted_drifts[4]
+        wrench_mean_corr[2] = wrench_mean_corr[2] - predicted_drifts[5]
+        wrench_mean_corr[3] = wrench_mean_corr[3] - predicted_drifts[6]
+        wrench_mean_corr[4] = wrench_mean_corr[4] - predicted_drifts[7]
+        wrench_mean_corr[5] = wrench_mean_corr[5] - predicted_drifts[8]
 
     return wrench_mean_corr, dist_mean_corr, arms_mean_corr, wrench_arr_orig, dist_arr_orig, arms_arr_orig, predicted_drifts
 
