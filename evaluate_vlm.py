@@ -70,61 +70,6 @@ class VLM:
 
         return decoded, prompt
 
-    def detect_objects(self, image_np_bgr, depth_frame, img_save_path=None, log_path=None):
-        """Detect objects and return bounding boxes with real-world coordinates"""
-
-        response, _ = self.infer(image_np_bgr, self.ODPREFIX, img_save_path=img_save_path, log_path=log_path)
-
-        h, w = depth_frame.shape  # Get depth image size
-
-        detections = sv.Detections.from_lmm(
-            lmm='paligemma',
-            result=response,
-            resolution_wh=(w, h),
-            classes=self.CLASSES
-        )
-
-        # print(detections)
-
-        detected_objects = []
-
-        if detections.xyxy.any():
-            for xyxy,class_id in zip(detections.xyxy,detections.class_id):
-                x_min, y_min, x_max, y_max = xyxy
-                bw, bh = x_max - x_min, y_max - y_min
-
-                # Compute center of bounding box
-                center_x = (x_min + x_max) // 2
-                center_y = (y_min + y_max) // 2
-
-                # Retrieve depth value safely
-                depth_spot_x = round(x_min + 125*(3/3))
-                depth_spot_y = round(y_max - 113*(3/3))
-
-                # Ensure center_x, center_y are within valid depth image range
-                center_x = max(0, min(center_x, w - 1))
-                center_y = max(0, min(center_y, h - 1))
-                depth_spot_x = max(0, min(depth_spot_x, w - 1))
-                depth_spot_y = max(0, min(depth_spot_y, h - 1))
-
-                depth_spot = (depth_spot_x, depth_spot_y)
-                depth_spot_yx = (depth_spot_y, depth_spot_x)
-                depth_value = depth_frame[depth_spot_yx]
-                # depth_value = depth_frame[0, 0]
-
-                class_name = self.CLASSES[class_id]
-
-                detected_objects.append({
-                    'bbox': (x_min, y_min, bw, bh),
-                    'label': class_name,
-                    'class_id': class_id,
-                    "depth": depth_value,
-                    "center": (center_x, center_y),
-                    "depth_spot": depth_spot
-                })
-
-        return detections, detected_objects
-
     def reload(self):
         print("Unloading model and clearing GPU cache")
         del self.base_model
