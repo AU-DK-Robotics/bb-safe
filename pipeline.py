@@ -367,19 +367,24 @@ def stringify_distance(d) -> str:
 def evaluateScene(model, camera, eval_mode, img_save_path=None, log_path=None):
     succ_actions = " planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
 
-    succ = True
+    response = ""
     msg = ""
-    if eval_mode[0] == 0:
-        msg = "No evaluation."
-    elif eval_mode[0] == 1:
-        msg = f"Heuristic evaluation: no heuristics, success: {succ}."
-    response = msg + succ_actions
-    msg = response
+    succ = True
+    if eval_mode[0] == 2:
+        prefix = EvalPrefix.SCENE
+        response = evaluate(model, camera, prefix, img_save_path=img_save_path, log_path=log_path)
+    else:
+        if eval_mode[0] == 0:
+            msg = "No evaluation."
+        elif eval_mode[0] == 1:
+            msg = f"Heuristic evaluation: no heuristics, success: {succ}."
+        response = msg + succ_actions
+        msg = response
 
-    print(msg)
-    if log_path:
-        with log_path.open("a") as f:
-            f.write(msg+"\n")
+        print(msg)
+        if log_path:
+            with log_path.open("a") as f:
+                f.write(msg+"\n")
     return response, uuid()
 
 def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
@@ -393,20 +398,24 @@ def evaluateAlignment(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img
     response = ""
     msg = ""
     succ = True
-    if eval_mode[1] == 0:
-        msg = "No evaluation."
-    elif eval_mode[1] == 1:
-        succ = dist_mean <= (22-3)
-        msg = f"Heuristic evaluation: distance for aligment: {dist_str}, success: {succ}."
-    if succ:
-        response = msg + succ_actions
+    if eval_mode[1] == 2:
+        prefix = EvalPrefix.ALIGNMENT.format(ultrasonic_dis_cm=dist_str)
+        response = evaluate(model, camera, prefix, img_save_path=img_save_path, log_path=log_path)
     else:
-        response = msg + fail_actions
-    msg = response
-    print(msg)
-    if log_path:
-        with log_path.open("a") as f:
-            f.write(msg+"\n")
+        if eval_mode[1] == 0:
+            msg = "No evaluation."
+        elif eval_mode[1] == 1:
+            succ = dist_mean <= (22-3)
+            msg = f"Heuristic evaluation: distance for aligment: {dist_str}, success: {succ}."
+        if succ:
+            response = msg + succ_actions
+        else:
+            response = msg + fail_actions
+        msg = response
+        print(msg)
+        if log_path:
+            with log_path.open("a") as f:
+                f.write(msg+"\n")
     return response, uuid()
 
 def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
@@ -420,22 +429,26 @@ def evaluateInsertion(model, camera, rtde_r, ard, eval_mode, N, dt, std=0.0, img
     response = ""
     succ = True
     msg = ""
-    if eval_mode[2] == 0:
-        msg = "No evaluation."
-    elif eval_mode[2] == 1:
-        eval1 = (dist_mean > 3) and (dist_mean < 5)
-        eval2 = force_mean[2] >= 4.0
-        succ = eval1 and eval2
-        msg = f"Heuristic evaluation: distance for insertion: {dist_str}, F-T for insertion: {force_str}, success: {succ}."
-    if succ:
-        response = msg + succ_actions
+    if eval_mode[2] == 2:
+        prefix = EvalPrefix.INSERTION.format(tcp_wrench_N_Nm = force_str, ultrasonic_dis_cm = dist_str)
+        response = evaluate(model, camera, prefix, img_save_path = img_save_path, log_path = log_path)
     else:
-        response = msg + fail_actions
-    msg = response
-    print(msg)
-    if log_path:
-        with log_path.open("a") as f:
-                f.write(msg+"\n")
+        if eval_mode[2] == 0:
+            msg = "No evaluation."
+        elif eval_mode[2] == 1:
+            eval1 = (dist_mean > 3) and (dist_mean < 5)
+            eval2 = force_mean[2] >= 4.0
+            succ = eval1 and eval2
+            msg = f"Heuristic evaluation: distance for insertion: {dist_str}, F-T for insertion: {force_str}, success: {succ}."
+        if succ:
+            response = msg + succ_actions
+        else:
+            response = msg + fail_actions
+        msg = response
+        print(msg)
+        if log_path:
+            with log_path.open("a") as f:
+                    f.write(msg+"\n")
     return response, uuid()
 
 def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, img_save_path=None, log_path=None):
@@ -449,22 +462,26 @@ def evaluateEngagement(model, camera, ard, rtde_r, eval_mode, N, dt, std=0.0, im
     response = ""
     succ = True
     msg = ""
-    if eval_mode[3] == 0:
-        msg = "No evaluation."
-    if eval_mode[3] == 1:
-        eval1 = np.any(np.array(arms_mean) >= 4.0)
-        eval2 = (dist_mean > 3) and (dist_mean < 5)
-        succ = eval1 and eval2
-        msg = f"Heuristic evaluation: arm forces for engagement: {arms_str}, distance for engagement: {dist_str}, success: {succ}."
-    if succ:
-        response = msg + succ_actions
+    if eval_mode[3] == 2:
+        prefix = EvalPrefix.ENGAGEMENT.format(force_gauge = arms_str, ultrasonic_dis_cm = dist_str)
+        response = evaluate(model, camera, prefix, img_save_path = img_save_path, log_path = log_path)
     else:
-        response = msg + fail_actions
-    msg = response
-    print(msg)
-    if log_path:
-        with log_path.open("a") as f:
-            f.write(msg+"\n")
+        if eval_mode[3] == 0:
+            msg = "No evaluation."
+        if eval_mode[3] == 1:
+            eval1 = np.any(np.array(arms_mean) >= 4.0)
+            eval2 = (dist_mean > 3) and (dist_mean < 5)
+            succ = eval1 and eval2
+            msg = f"Heuristic evaluation: arm forces for engagement: {arms_str}, distance for engagement: {dist_str}, success: {succ}."
+        if succ:
+            response = msg + succ_actions
+        else:
+            response = msg + fail_actions
+        msg = response
+        print(msg)
+        if log_path:
+            with log_path.open("a") as f:
+                f.write(msg+"\n")
     return response, uuid()
 
 
