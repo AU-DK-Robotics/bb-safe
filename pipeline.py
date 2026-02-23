@@ -614,7 +614,7 @@ engageGripper(ser, False, servo_time)
     ldict["rand_spread_align"] = 0.04
 
     # Type of evaluation to do after each action (detection, alignment, insertion, engagement)
-    # 0 = none, 1 = rule-based
+    # 0 = none, 1 = rule-based, 2 = VLM-based
     ldict["eval_mode"] = [1, 1, 1, 1]
 
     # Admittance parameters
