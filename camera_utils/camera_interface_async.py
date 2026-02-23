@@ -142,7 +142,7 @@ class RealSenseInterfaceAsync:
                 rs_gain = self.color_sensor.get_option(rs.option.gain)
 
                 snow_mean_rate = snow.model(self.gamma_dose_rate)
-                snow_mean = snow_mean_rate*t_exp*rs_gain;
+                snow_mean = snow_mean_rate*t_exp*rs_gain
                 color_image, _ = snow.apply(color_image,mean=snow_mean)
 
             return color_image, depth_image, depth_colormap, color_image_original
