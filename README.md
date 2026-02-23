@@ -8,4 +8,3 @@
 - `ultralytics`
 - `transformers`
 - `peft`
-- `supervision`

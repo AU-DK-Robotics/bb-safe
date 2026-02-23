@@ -1,7 +1,6 @@
 import torch
 from transformers import PaliGemmaProcessor, PaliGemmaForConditionalGeneration
 from peft import PeftModel
-import supervision as sv
 from PIL import Image
 
 torch.set_float32_matmul_precision('high')
