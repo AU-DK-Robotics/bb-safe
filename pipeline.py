@@ -30,6 +30,9 @@ from detect_yolo import detectorYOLO
 from object_detection.coordinate_transformation import transform_to_robot_frame
 import cv2
 
+# Evaluation model
+from evaluate_vlm import VLM
+
 # Sensors
 import sensing
 
@@ -309,7 +312,7 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
             cv2.imwrite(det_i_save_path, save_image)
 
 
-        # cv2.imshow("RealSense VLA Detection", display_image)
+        # cv2.imshow("Interface Detections", display_image)
         # cv2.waitKey(1)
 
         if align_pose:
@@ -549,16 +552,16 @@ if __name__ == '__main__':
     # Adapt action descriptions to code snippets
     action_adapter = {
         "move to view pose":            "rand_view_q = getRandomViewQ(rtde_c, viewP, viewQ, spread = rand_spread_scene)",
-        "evaluate scene":               "response, response_id = evaluateScene(model, camera, eval_mode, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate scene":               "response, response_id = evaluateScene(evaluator_model, camera, eval_mode, img_save_path=rgb_save_path, log_path=log)",
         "chase interface":              "rand_view_q = urMoveJ(rtde_c, getRandomViewQ(rtde_c, viewP, viewQ, spread = rand_spread_scene))",
-        "detect interface":             "align_pose, insert_pose = detectInterface(camera, model, rtde_r, spread = rand_spread_align, detection_save_path = detect_save_path, depth_save_path = z_save_path, img_save_path=rgb_save_path, log_path=log)",
+        "detect interface":             "align_pose, insert_pose = detectInterface(camera, detector_model, rtde_r, spread = rand_spread_align, detection_save_path = detect_save_path, depth_save_path = z_save_path, img_save_path=rgb_save_path, log_path=log)",
         "align gripper with interface": "urMoveJ(rtde_c, align_pose, isIK=True)",
-        "evaluate alignment":           "response, response_id = evaluateAlignment(model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate alignment":           "response, response_id = evaluateAlignment(evaluator_model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
         "insert gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, insert_pose, 20.0, dt, admit_M, insert_C, insert_K, K_fac = insert_K_fac, C_fac = insert_C_fac, desired_z_force = insert_Fz, vac_distance_threshold = 0.01",
-        "evaluate insertion":           "response, response_id = evaluateInsertion(model, camera, rtde_r, ser, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate insertion":           "response, response_id = evaluateInsertion(evaluator_model, camera, rtde_r, ser, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
         "remove gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False, out_dir=out_dir))",
         "engage gripper":               "engageGripper(ser, True, servo_time)",
-        "evaluate engagement":          "response, response_id = evaluateEngagement(model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate engagement":          "response, response_id = evaluateEngagement(evaluator_model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
         "disengage gripper":            "engageGripper(ser, False, servo_time)",
         "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), n_samp, dt_samp, csv_path = global_csv)
 engageGripper(ser, False, servo_time)
@@ -646,7 +649,10 @@ engageGripper(ser, False, servo_time)
     ldict["viewP"] = ldict["rtde_c"].getForwardKinematics(ldict["viewQ"],tcp_offset=np.zeros(6).tolist())
 
     # Load the object detection model (YOLO)
-    ldict["model"] = detectorYOLO(model_weights_path="object_detection/runs/detect/train2/weights/best.pt",confidence_threshold=0.9)
+    ldict["detector_model"] = detectorYOLO(model_weights_path="object_detection/runs/detect/train2/weights/best.pt",confidence_threshold=0.9)
+
+    # Load the evaluator model (PaliGemma)
+    ldict["evaluator_model"] = VLM("vlm_training/check_point/od_vqa_fec_25epoch_new_od_img_v2/checkpoint-6960")
 
     # Start the main loop while accepting keyboard interrupts
     try:
