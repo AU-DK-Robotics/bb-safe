@@ -9,7 +9,7 @@ from pathlib import Path
 from camera_utils import snow
 import time
 class RealSenseInterfaceAsync:
-    def __init__(self, width=1280, height=720, fps=15, hec_path=None, recording_path=None, snow_rate=0.0, snow_factor=1.0):
+    def __init__(self, width=1280, height=720, fps=15, hec_path=None, recording_path=None, gamma_dose_rate=0.0, snow_factor=1.0):
 
         # Reset all connected Realsense devices
         ctx = rs.context()
@@ -78,7 +78,7 @@ class RealSenseInterfaceAsync:
         self.thread.start()
 
         self.snow_factor = snow_factor
-        self.snow_rate = snow_rate
+        self.gamma_dose_rate = gamma_dose_rate
 
         # Make sure we're getting frames
         while True:
@@ -137,11 +137,12 @@ class RealSenseInterfaceAsync:
 
             # Apply snow to RGB image
             color_image_original = color_image.copy()
-            if self.snow_rate > 0:
+            if self.gamma_dose_rate > 0:
                 t_exp = self.color_sensor.get_option(rs.option.exposure)/10000 # convert units of 100 microsec -> 1 second
                 rs_gain = self.color_sensor.get_option(rs.option.gain)
 
-                snow_mean = snow.model(self.snow_rate,t_exp,gain=rs_gain)
+                snow_mean_rate = snow.model(self.gamma_dose_rate)
+                snow_mean = snow_mean_rate*t_exp*rs_gain;
                 color_image, _ = snow.apply(color_image,mean=snow_mean)
 
             return color_image, depth_image, depth_colormap, color_image_original

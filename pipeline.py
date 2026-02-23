@@ -192,7 +192,7 @@ def urMoveJ(rtde_c,data,speed=0.25,post_move_wait=1,isIK=False):
     sleep(post_move_wait)
     return data
 
-def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, gamma_noise_rate = 0):
+def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = None, sertimeout = 1, gamma_dose_rate = 0.0):
 
     # Connect to gripper (Arduino)
     ser = gripper.connectGripper(serial_device, sertimeout)
@@ -205,7 +205,7 @@ def initializeConnections(robot_ip, freq, hec_path, out_dir, serial_device = Non
 
     # Connect to camera
     print("Connecting to RealSense camera... ",end="")
-    camera = RealSenseInterface(hec_path,out_dir,snow_rate=gamma_noise_rate)
+    camera = RealSenseInterface(hec_path,out_dir,snow_rate=gamma_dose_rate)
     print("OK")
 
     return ser, rtde_c, rtde_r, camera
@@ -573,14 +573,14 @@ if __name__ == '__main__':
         "chase interface":              "rand_view_q = urMoveJ(rtde_c, getRandomViewQ(rtde_c, viewP, viewQ, spread = rand_spread_scene))",
         "detect interface":             "align_pose, insert_pose = detectInterface(camera, detector_model, rtde_r, spread = rand_spread_align, detection_save_path = detect_save_path, depth_save_path = z_save_path, img_save_path=rgb_save_path, log_path=log)",
         "align gripper with interface": "urMoveJ(rtde_c, align_pose, isIK=True)",
-        "evaluate alignment":           "response, response_id = evaluateAlignment(evaluator_model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate alignment":           "response, response_id = evaluateAlignment(evaluator_model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log, std=sens_std)",
         "insert gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, insert_pose, 20.0, dt, admit_M, insert_C, insert_K, K_fac = insert_K_fac, C_fac = insert_C_fac, desired_z_force = insert_Fz, vac_distance_threshold = 0.01",
-        "evaluate insertion":           "response, response_id = evaluateInsertion(evaluator_model, camera, rtde_r, ser, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate insertion":           "response, response_id = evaluateInsertion(evaluator_model, camera, rtde_r, ser, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log, std=sens_std)",
         "remove gripper":               "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False, out_dir=out_dir))",
         "engage gripper":               "engageGripper(ser, True, servo_time)",
-        "evaluate engagement":          "response, response_id = evaluateEngagement(evaluator_model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log)",
+        "evaluate engagement":          "response, response_id = evaluateEngagement(evaluator_model, camera, ser, rtde_r, eval_mode, n_samp, dt_samp, img_save_path=rgb_save_path, log_path=log, std=sens_std)",
         "disengage gripper":            "engageGripper(ser, False, servo_time)",
-        "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), n_samp, dt_samp, csv_path = global_csv)
+        "finished":                     """finalEvaluation(rtde_r, ser, eval_mode, now, (rand_spread_scene, rand_spread_align), n_samp, dt_samp, csv_path = global_csv, std=sens_std)
 engageGripper(ser, False, servo_time)
 "variableAdmittanceMoveL(rtde_c, rtde_r, align_pose, 10.0, dt, admit_M, remove_C, remove_K, zero_ft = False , out_dir=out_dir))"""
     }
@@ -676,10 +676,12 @@ engageGripper(ser, False, servo_time)
     # normalized variance as the image sensor (mean = variance for Poisson)
     sensor_noise_std_norm = np.sqrt(gamma_noise_rate)/255
 
+    ldict["sens_std"] = sensor_noise_std_norm
+
     # -- Start ---
 
     # Initialize devices
-    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_noise_rate=gamma_noise_rate)
+    ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_dose_rate=gamma_dose_rate)
 
     # Start the main loop while accepting keyboard interrupts
     try:
