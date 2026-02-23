@@ -588,6 +588,8 @@ engageGripper(ser, False, servo_time)
     # Initialize dictionary of local variables for exec() and insert constants
     ldict = {}
 
+    # --- Constants and paths ---
+
     # Gripper actuation time
     servo_spr = 8    # time per rev at the configured speed (sec)
     rack_stroke = 22 # Stroke distance for engaging gripper (mm)
@@ -595,11 +597,31 @@ engageGripper(ser, False, servo_time)
     rev_per_stroke = rack_stroke/(math.pi*spur_diam)
     ldict["servo_time"] = servo_spr*rev_per_stroke
 
-    # Experiment time
+    # Experiment timestamp
     ldict["now"] = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-    # Hand-eye calibration file location
-    ldict["hec_path"] = "handeye_calibration/captures_1280_720_20250908_1/final_calibration.yaml"
+    # Root folder for storing experiment data
+    global_dir = Path.home() / "bb_safe" / "Experiments"
+    global_dir.mkdir(exist_ok=True, parents=True)
+
+    # CSV file with overview of successful experiments
+    ldict["global_csv"] = global_dir / "global.csv"
+
+    # Where to store data from this experiment
+    eval_mode_str = ''.join([str(i) for i in ldict["eval_mode"]])
+    ldict["out_dir"] = global_dir / ("EvalMode_" + eval_mode_str) / ldict["now"]
+
+    # Starting action sequence and its UUID
+    ldict["response_id"] = "6790e196-fff0-419b-ad6a-32e4b5955a02"
+    ldict["response"] = "starting. planned actions: chase interface; evaluate scene."
+
+    # Hard-coded start pose
+    ldict["viewQ"] = [1.8504924774169922, -1.4910245326212426, 0.5884845892535608, -0.6688453716090699, -1.5668700377093714, -0.5082209745990198]
+    ldict["viewP"] = ldict["rtde_c"].getForwardKinematics(ldict["viewQ"],tcp_offset=np.zeros(6).tolist())
+
+    #
+    # --- Experiment variables ---
+    #
 
     # IP address of robot
     ldict["robot_ip"] = "192.168.1.254"
@@ -612,10 +634,6 @@ engageGripper(ser, False, servo_time)
     # Maximum x- and y-axis random offset magnitudes for scene evaluation / object detection and alignment poses
     ldict["rand_spread_scene"] = 0.04
     ldict["rand_spread_align"] = 0.04
-
-    # Type of evaluation to do after each action (detection, alignment, insertion, engagement)
-    # 0 = none, 1 = rule-based, 2 = VLM-based
-    ldict["eval_mode"] = [1, 1, 1, 1]
 
     # Admittance parameters
     ldict["admit_M"] = np.diag([50, 50, 50, 50, 50, 50])
@@ -632,6 +650,25 @@ engageGripper(ser, False, servo_time)
     # Amount of simulated gamma radiation
     gamma_dose_rate = 100/60 # Gy/min
 
+    # Number of samples and time between samples when reading F-T, range, and arm sensors
+    n_samp = 50
+    dt_samp = 0.04
+
+    # Hand-eye calibration file location
+    ldict["hec_path"] = "handeye_calibration/captures_1280_720_20250908_1/final_calibration.yaml"
+
+    # Load the object detection model (YOLO)
+    ldict["detector_model"] = detectorYOLO(model_weights_path="object_detection/runs/detect/train2/weights/best.pt",confidence_threshold=0.9)
+
+    # Load the evaluator model (PaliGemma)
+    ldict["evaluator_model"] = VLM("vlm_training/check_point/od_vqa_fec_25epoch_new_od_img_v2/checkpoint-6960")
+
+    # Type of evaluation to do after each action (detection, alignment, insertion, engagement)
+    # 0 = none, 1 = rule-based, 2 = VLM-based
+    ldict["eval_mode"] = [1, 1, 1, 1]
+
+    # --- Pre-start calculations ---
+
     # Returns Poisson exected value rate (DN/s) as a function of dose rate
     gamma_noise_rate = snow.model(gamma_dose_rate)
 
@@ -639,37 +676,10 @@ engageGripper(ser, False, servo_time)
     # normalized variance as the image sensor (mean = variance for Poisson)
     sensor_noise_std_norm = np.sqrt(gamma_noise_rate)/255
 
-    # Number of samples and time between samples when reading F-T, range, and arm sensors
-    n_samp = 50
-    dt_samp = 0.04
-
-    # Root folder for storing experiment data
-    global_dir = Path.home() / "bb_safe" / "Experiments"
-    global_dir.mkdir(exist_ok=True, parents=True)
-
-    # CSV file with overview of successful experiments
-    ldict["global_csv"] = global_dir / "global.csv"
-
-    # Where to store data from this experiment
-    eval_mode_str = ''.join([str(i) for i in ldict["eval_mode"]])
-    ldict["out_dir"] = global_dir / ("YOLO_" + eval_mode_str) / ldict["now"]
-
-    # Starting action sequence and its UUID
-    ldict["response_id"] = "6790e196-fff0-419b-ad6a-32e4b5955a02"
-    ldict["response"] = "starting. planned actions: chase interface; evaluate scene."
+    # -- Start ---
 
     # Initialize devices
     ldict["ser"], ldict["rtde_c"], ldict["rtde_r"], ldict["camera"] = initializeConnections(ldict["robot_ip"], ldict["freq"], ldict["hec_path"], ldict["out_dir"], gamma_noise_rate=gamma_noise_rate)
-
-    # Hard-coded start pose
-    ldict["viewQ"] = [1.8504924774169922, -1.4910245326212426, 0.5884845892535608, -0.6688453716090699, -1.5668700377093714, -0.5082209745990198]
-    ldict["viewP"] = ldict["rtde_c"].getForwardKinematics(ldict["viewQ"],tcp_offset=np.zeros(6).tolist())
-
-    # Load the object detection model (YOLO)
-    ldict["detector_model"] = detectorYOLO(model_weights_path="object_detection/runs/detect/train2/weights/best.pt",confidence_threshold=0.9)
-
-    # Load the evaluator model (PaliGemma)
-    ldict["evaluator_model"] = VLM("vlm_training/check_point/od_vqa_fec_25epoch_new_od_img_v2/checkpoint-6960")
 
     # Start the main loop while accepting keyboard interrupts
     try:
