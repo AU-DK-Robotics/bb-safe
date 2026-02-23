@@ -333,9 +333,9 @@ def detectInterface(camera, detector, rtde_r, spread=0.0, interface_type="big_in
 
 class EvalPrefix(StrEnum):
     SCENE  = "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter."
-    ALIGNMENT  = "based on the image, and the distance to interface {ultrasonic_dis_cm}, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement."
-    INSERTION  = "based on the image, contact wrench {tcp_wrench_N_Nm}, and the distance to interface {ultrasonic_dis_cm}, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement."
-    ENGAGEMENT = "based on the image, the distance to interface {ultrasonic_dis_cm}, and the folding arm force {force_gauge}, evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement."
+    ALIGNMENT  = "based on the image, and the mean distance to interface {ultrasonic_dis_cm}, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement."
+    INSERTION  = "based on the image, the mean contact wrench {tcp_wrench_N_Nm}, and the mean distance to interface {ultrasonic_dis_cm}, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement."
+    ENGAGEMENT = "based on the image, the mean distance to interface {ultrasonic_dis_cm}, and the mean folding arm force {force_gauge}, evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement."
 
 def stringify_wrench(w) -> str:
     if not isinstance(w, (list, tuple)) or len(w) < 6:
