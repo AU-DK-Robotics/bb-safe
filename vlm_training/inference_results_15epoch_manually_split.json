@@ -1,0 +1,92 @@
+[
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface, capture image; detect interface; acquire data (detection); evaluate detection."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible, then plan the following robotic actions for engagement.",
+    "ground_truth": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "the whole interface is visible. planned actions: move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  },
+  {
+    "question": "based on the image, plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement.",
+    "generated": "planned actions: initiate connections; capture image; detect interface; acquire data (detection); evaluate detection; move to pre-insertion pose; acquire data (alignment); evaluate alignment; activate admittance control; insertion; terminate admittance control; acquire data (insertion); evaluate insertion; activate folding arm ; arm open; acquire data (engagement); evaluate engagement."
+  }
+]

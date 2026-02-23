@@ -1,0 +1,499 @@
+[
+  {
+    "xyxy": [
+      [
+        170.0,
+        58.359375,
+        560.0,
+        523.125
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        888.75,
+        128.671875,
+        1187.5,
+        417.65625
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        436.25,
+        0.0,
+        1202.5,
+        510.46875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      0
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        423.75,
+        47.8125,
+        1112.5,
+        162.421875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        170.0,
+        43.59375,
+        547.5,
+        504.84375
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        208.75,
+        30.234375,
+        217.5,
+        698.90625
+      ],
+      [
+        208.75,
+        25.3125,
+        486.25,
+        389.53125
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0,
+      1.0
+    ],
+    "class_id": [
+      0,
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface",
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        302.5,
+        233.4375,
+        811.25,
+        580.078125
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        423.75,
+        186.328125,
+        990.0,
+        577.96875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        886.25,
+        40.78125,
+        1211.25,
+        365.625
+      ],
+      [
+        290.0,
+        193.359375,
+        616.25,
+        537.1875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0,
+      1.0
+    ],
+    "class_id": [
+      0,
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface",
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        535.0,
+        18.984375,
+        987.5,
+        433.828125
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      0
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        391.25,
+        11.25,
+        1135.0,
+        530.15625
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      0
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        288.75,
+        233.4375,
+        785.0,
+        580.078125
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        742.5,
+        11.25,
+        828.75,
+        87.1875
+      ],
+      [
+        752.5,
+        11.25,
+        805.0,
+        49.21875
+      ],
+      [
+        222.5,
+        200.390625,
+        607.5,
+        612.421875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "class_id": [
+      1,
+      0,
+      0
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface",
+        "big_interface",
+        "big_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        408.75,
+        37.96875,
+        1135.0,
+        530.15625
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      0
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        622.5,
+        63.984375,
+        1198.75,
+        561.09375
+      ],
+      [
+        70.0,
+        193.359375,
+        527.5,
+        601.171875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0,
+      1.0
+    ],
+    "class_id": [
+      0,
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface",
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        383.75,
+        214.453125,
+        918.75,
+        589.21875
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        811.25,
+        172.265625,
+        1242.5,
+        545.625
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0
+    ],
+    "class_id": [
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [],
+    "mask": null,
+    "confidence": [],
+    "class_id": [],
+    "tracker_id": null,
+    "data": {
+      "class_name": []
+    },
+    "metadata": {}
+  },
+  {
+    "xyxy": [
+      [
+        660.0,
+        32.34375,
+        1242.5,
+        551.953125
+      ],
+      [
+        175.0,
+        222.1875,
+        608.75,
+        523.125
+      ]
+    ],
+    "mask": null,
+    "confidence": [
+      1.0,
+      1.0
+    ],
+    "class_id": [
+      0,
+      1
+    ],
+    "tracker_id": null,
+    "data": {
+      "class_name": [
+        "big_interface",
+        "small_interface"
+      ]
+    },
+    "metadata": {}
+  }
+]

@@ -1,0 +1,1277 @@
+[
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 36.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 21.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 24.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. ",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 21.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 21.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 21.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 22.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image seems off-centered, or the distance deviates further from 22 cm, so the misalignment is large. planned actions: move to view pose; detect interface; align gripper with interface; evaluate alignment. "
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, and the distance to interface 23.00 cm, evaluate if the alignment between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the image appears centered, and the distance is around 22 cm, so the misalignment is small. planned actions: insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.02], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.01], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.01], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.02], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.01], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.02, right=0.25], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.01], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.01, right=0.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.00, right=0.07], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement.",
+    "generated": "none of the arms is contacted, so the engagement is bad. planned actions: disengage gripper; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.20, right=4.81], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.41, right=4.86], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.28, right=4.88], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.27, right=4.90], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.29, right=4.92], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.15, right=4.93], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.20, right=4.93], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.39, right=4.93], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=0.38, right=4.93], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.27, right=4.93], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.34, right=4.93], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.41, right=4.92], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=0.34, right=4.91], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.98, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.98, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.98, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=4.98, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.98, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.99, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=4.99, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.99, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=5.00, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=5.00, right=4.99], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 5.00 cm, and the folding arm force [left=4.99, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, the distance to interface 4.00 cm, and the folding arm force [left=4.98, right=5.00], evaluate the engagement between the folding arm and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "at least one arm is contacted, so the engagement is good. planned actions: finished",
+    "generated": "at least one arm is contacted, so the engagement is good. planned actions: finished"
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.62 N, Fy=0.85 N, Fz=0.13 N, Tx=-0.069 Nm, Ty=0.151 Nm, Tz=-0.097 Nm], and the distance to interface 13.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=3.68 N, Fy=2.16 N, Fz=0.68 N, Tx=0.138 Nm, Ty=-0.209 Nm, Tz=-0.130 Nm], and the distance to interface 6.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=9.40 N, Fy=6.09 N, Fz=2.24 N, Tx=0.724 Nm, Ty=-1.329 Nm, Tz=-0.219 Nm], and the distance to interface 6.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=10.77 N, Fy=7.02 N, Fz=2.52 N, Tx=0.897 Nm, Ty=-1.714 Nm, Tz=-0.240 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.52 N, Fy=7.66 N, Fz=2.90 N, Tx=0.992 Nm, Ty=-2.056 Nm, Tz=-0.242 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.96 N, Fy=7.72 N, Fz=3.86 N, Tx=1.018 Nm, Ty=-2.096 Nm, Tz=-0.246 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=13.04 N, Fy=7.90 N, Fz=1.63 N, Tx=1.043 Nm, Ty=-2.218 Nm, Tz=-0.245 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=13.67 N, Fy=7.56 N, Fz=4.09 N, Tx=0.979 Nm, Ty=-2.158 Nm, Tz=-0.228 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=13.96 N, Fy=8.45 N, Fz=2.09 N, Tx=1.074 Nm, Ty=-2.274 Nm, Tz=-0.273 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=14.69 N, Fy=8.13 N, Fz=4.96 N, Tx=0.985 Nm, Ty=-2.208 Nm, Tz=-0.243 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=15.34 N, Fy=8.80 N, Fz=2.41 N, Tx=1.090 Nm, Ty=-2.365 Nm, Tz=-0.284 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=15.92 N, Fy=8.50 N, Fz=5.28 N, Tx=1.020 Nm, Ty=-2.295 Nm, Tz=-0.267 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=16.19 N, Fy=8.88 N, Fz=3.79 N, Tx=1.046 Nm, Ty=-2.378 Nm, Tz=-0.281 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=16.60 N, Fy=9.38 N, Fz=2.40 N, Tx=1.127 Nm, Ty=-2.496 Nm, Tz=-0.285 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=18.39 N, Fy=9.41 N, Fz=4.13 N, Tx=1.110 Nm, Ty=-2.636 Nm, Tz=-0.256 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=18.83 N, Fy=9.65 N, Fz=3.37 N, Tx=1.154 Nm, Ty=-2.726 Nm, Tz=-0.271 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.51 N, Fy=0.71 N, Fz=-0.09 N, Tx=-0.066 Nm, Ty=0.148 Nm, Tz=-0.096 Nm], and the distance to interface 10.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.61 N, Fy=0.74 N, Fz=0.09 N, Tx=-0.072 Nm, Ty=0.150 Nm, Tz=-0.098 Nm], and the distance to interface 9.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.42 N, Fy=0.86 N, Fz=0.04 N, Tx=-0.075 Nm, Ty=0.173 Nm, Tz=-0.099 Nm], and the distance to interface 8.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.52 N, Fy=0.75 N, Fz=0.23 N, Tx=-0.066 Nm, Ty=0.157 Nm, Tz=-0.099 Nm], and the distance to interface 8.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.52 N, Fy=0.70 N, Fz=0.11 N, Tx=-0.071 Nm, Ty=0.160 Nm, Tz=-0.100 Nm], and the distance to interface 7.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.50 N, Fy=0.75 N, Fz=0.00 N, Tx=-0.068 Nm, Ty=0.167 Nm, Tz=-0.099 Nm], and the distance to interface 7.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.54 N, Fy=1.00 N, Fz=0.01 N, Tx=-0.061 Nm, Ty=0.164 Nm, Tz=-0.100 Nm], and the distance to interface 6.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.62 N, Fy=0.79 N, Fz=0.29 N, Tx=-0.072 Nm, Ty=0.166 Nm, Tz=-0.100 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.35 N, Fy=1.22 N, Fz=0.23 N, Tx=-0.028 Nm, Ty=0.210 Nm, Tz=-0.091 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.47 N, Fy=7.24 N, Fz=0.50 N, Tx=0.934 Nm, Ty=0.339 Nm, Tz=-0.069 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.92 N, Fy=0.82 N, Fz=-0.13 N, Tx=-0.069 Nm, Ty=0.163 Nm, Tz=-0.102 Nm], and the distance to interface 8.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=0.20 N, Fy=8.42 N, Fz=1.07 N, Tx=1.273 Nm, Ty=0.561 Nm, Tz=-0.011 Nm], and the distance to interface 7.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=0.84 N, Fy=16.38 N, Fz=2.57 N, Tx=2.634 Nm, Ty=0.575 Nm, Tz=0.032 Nm], and the distance to interface 6.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.40 N, Fy=24.72 N, Fz=5.97 N, Tx=4.276 Nm, Ty=0.572 Nm, Tz=0.015 Nm], and the distance to interface 6.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.77 N, Fy=28.67 N, Fz=9.29 N, Tx=5.052 Nm, Ty=0.557 Nm, Tz=0.094 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=1.53 N, Fy=31.47 N, Fz=13.45 N, Tx=5.547 Nm, Ty=0.593 Nm, Tz=0.103 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=0.68 N, Fy=11.33 N, Fz=5.54 N, Tx=1.758 Nm, Ty=0.402 Nm, Tz=-0.202 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=0.33 N, Fy=11.67 N, Fz=8.52 N, Tx=1.785 Nm, Ty=0.438 Nm, Tz=-0.193 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=-0.22 N, Fy=12.02 N, Fz=15.64 N, Tx=1.880 Nm, Ty=0.528 Nm, Tz=-0.153 Nm], and the distance to interface 5.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=-1.12 N, Fy=12.34 N, Fz=30.43 N, Tx=2.044 Nm, Ty=0.666 Nm, Tz=-0.094 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=-3.44 N, Fy=14.40 N, Fz=53.32 N, Tx=2.222 Nm, Ty=0.496 Nm, Tz=0.005 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=6.49 N, Fy=11.37 N, Fz=10.10 N, Tx=1.765 Nm, Ty=-0.310 Nm, Tz=-0.198 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=5.46 N, Fy=12.77 N, Fz=38.29 N, Tx=2.083 Nm, Ty=-0.036 Nm, Tz=-0.076 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=3.99 N, Fy=14.19 N, Fz=55.16 N, Tx=2.165 Nm, Ty=-0.222 Nm, Tz=-0.020 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.34 N, Fy=11.15 N, Fz=14.17 N, Tx=1.785 Nm, Ty=-1.035 Nm, Tz=-0.194 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.46 N, Fy=11.45 N, Fz=21.62 N, Tx=1.849 Nm, Ty=-0.914 Nm, Tz=-0.150 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.42 N, Fy=11.80 N, Fz=31.44 N, Tx=1.945 Nm, Ty=-0.814 Nm, Tz=-0.123 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.06 N, Fy=-1.92 N, Fz=5.67 N, Tx=-0.021 Nm, Ty=-1.300 Nm, Tz=-0.117 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is smaller than 4 N or the distance is larger than 5 cm, so the insertion is bad. planned actions: remove gripper; insertion gripper; evaluate insertion."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.41 N, Fy=-1.98 N, Fz=11.28 N, Tx=0.023 Nm, Ty=-1.200 Nm, Tz=-0.084 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.27 N, Fy=-1.91 N, Fz=11.88 N, Tx=0.041 Nm, Ty=-1.185 Nm, Tz=-0.082 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, contact wrench [Fx=12.49 N, Fy=-2.12 N, Fz=23.82 N, Tx=0.177 Nm, Ty=-1.005 Nm, Tz=-0.045 Nm], and the distance to interface 4.00 cm, evaluate if the insertion between the gripper and interface is good or not. then plan the following actions for engagement.",
+    "ground_truth": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement.",
+    "generated": "the Fz is larger than 4 N and the distance is around 4 cm, so the insertion is good. planned actions: engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene.",
+    "generated": "the interface is partially visible or not visible. planned actions: chase interface; evaluate scene."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  },
+  {
+    "question": "based on the image, evaluate the whole interface is visible or not, then plan the robotic actions for gripper engagement of transporter.",
+    "ground_truth": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement.",
+    "generated": "the whole interface is visible. the planned actions: detect interface; align gripper with interface; evaluate alignment; insert gripper; evaluate insertion; engage gripper; evaluate engagement."
+  }
+]
